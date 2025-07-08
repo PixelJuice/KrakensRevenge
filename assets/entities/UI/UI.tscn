@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://l6epy2wfm7k6"]
+
+[ext_resource type="Script" uid="uid://b3cu2dwpsaakk" path="res://assets/entities/UI/UI.gd" id="1_pitpu"]
+[ext_resource type="Script" uid="uid://g0dop31ykpxt" path="res://assets/entities/UI/Health.gd" id="2_dupts"]
+[ext_resource type="Script" uid="uid://jo03bgcaugqp" path="res://assets/entities/UI/Boost.gd" id="3_la5a8"]
+
+[sub_resource type="Gradient" id="Gradient_yhi3q"]
+colors = PackedColorArray(0, 0, 0, 1, 0.258071, 0.0174674, 0.137315, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pitpu"]
+noise_type = 2
+seed = 2
+frequency = 0.03
+fractal_type = 0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dupts"]
+width = 200
+height = 12
+color_ramp = SubResource("Gradient_yhi3q")
+noise = SubResource("FastNoiseLite_pitpu")
+
+[sub_resource type="Gradient" id="Gradient_la5a8"]
+colors = PackedColorArray(0, 0, 0, 1, 0.999084, 0, 0.429059, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5teh"]
+gradient = SubResource("Gradient_la5a8")
+width = 200
+height = 12
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ipfip"]
+diffuse_texture = SubResource("GradientTexture2D_s5teh")
+
+[sub_resource type="Gradient" id="Gradient_dupts"]
+colors = PackedColorArray(0, 0, 0, 1, 0.234306, 0.156392, 0.0202357, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_la5a8"]
+noise_type = 2
+frequency = 0.03
+fractal_type = 0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s5teh"]
+width = 200
+height = 32
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_dupts")
+noise = SubResource("FastNoiseLite_la5a8")
+
+[sub_resource type="Gradient" id="Gradient_pitpu"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.792157, 0.427451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dupts"]
+gradient = SubResource("Gradient_pitpu")
+width = 200
+height = 32
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_la5a8"]
+diffuse_texture = SubResource("GradientTexture2D_dupts")
+
+[node name="Control" type="MarginContainer" node_paths=PackedStringArray("boost", "health")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pitpu")
+boost = NodePath("Vertical/Boost_Bar")
+health = NodePath("Vertical/Health_Bar")
+
+[node name="Vertical" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Health_Bar" type="TextureProgressBar" parent="Vertical"]
+layout_mode = 2
+max_value = 10000.0
+value = 100.0
+texture_under = SubResource("NoiseTexture2D_dupts")
+texture_progress = SubResource("CanvasTexture_ipfip")
+script = ExtResource("2_dupts")
+
+[node name="Boost_Bar" type="TextureProgressBar" parent="Vertical"]
+layout_mode = 2
+texture_under = SubResource("NoiseTexture2D_s5teh")
+texture_progress = SubResource("CanvasTexture_la5a8")
+script = ExtResource("3_la5a8")

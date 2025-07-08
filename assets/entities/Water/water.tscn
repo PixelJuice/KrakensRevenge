@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdg4m6pd7dp88"]
+
+[ext_resource type="Shader" uid="uid://dskq678pu3dk1" path="res://assets/entities/Water/waterv5.gdshader" id="1_r26k5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_r26k5"]
+lightmap_size_hint = Vector2i(12, 12)
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hn0kd"]
+render_priority = 0
+shader = ExtResource("1_r26k5")
+shader_parameter/Outline_color = Color(0, 0, 0, 1)
+shader_parameter/top_color = Color(0.160784, 0.247059, 0.294118, 1)
+shader_parameter/bottom_color = Color(0.109804, 0.0627451, 0.160784, 1)
+
+[node name="water" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_r26k5")
+surface_material_override/0 = SubResource("ShaderMaterial_hn0kd")

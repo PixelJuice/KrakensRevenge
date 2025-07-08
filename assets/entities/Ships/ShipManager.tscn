@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdx5iul76lqn"]
+
+[ext_resource type="Script" uid="uid://c447gac6cevwa" path="res://assets/entities/Ships/ship_manager.gd" id="1_6r3h3"]
+[ext_resource type="PackedScene" uid="uid://c5qirp5hggcm0" path="res://assets/entities/Ships/Ship.tscn" id="2_jlkm4"]
+
+[node name="ShipManager" type="Node3D"]
+script = ExtResource("1_6r3h3")
+boidScene = ExtResource("2_jlkm4")
