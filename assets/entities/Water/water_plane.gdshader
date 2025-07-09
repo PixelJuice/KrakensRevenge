@@ -31,17 +31,17 @@ vec3 remap_value(vec3 value, vec3 old_min, vec3 old_max, vec3 new_min, vec3 new_
     vec3 remapped_value = new_min + (normalized * (new_max - new_min));
     return remapped_value;
 }
-    
-	
-void fragment() {	
+
+
+void fragment() {
 	float time = TIME * .01;
 	vec2 wuv = (worldUV.xz * 0.005);
-	
+
 	vec3 normal_1 = texture(texture_normal, wuv + (normal_direction * time * distortion_speed)).rgb;
 	vec3 normal_2 = texture(texture_normal2, wuv + (normal_direction2 * time * distortion_speed)).rgb;
-	
-	
-	
+
+
+
 	vec3 normal = mix(normal_1, normal_2, 0.5);
 	normal = remap_value(normal, vec3(0.), vec3( 1.), vec3(-1.), vec3(1.));
 	vec3 glitter_i = texture(glitter_intensity, wuv * 10. + (time * 10.) + (normal.rb * distortion)).rgb;
@@ -52,6 +52,6 @@ void fragment() {
 	vec3 glitter = mix(glitter_m, glitter_i, .5);
 	//glitter = mix(colour, glitter_i, glitter);
 	colour = mix(glitter_colour, colour, step(glitter_amount, glitter));
-	
+
 	ALBEDO = colour;
 }

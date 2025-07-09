@@ -50,7 +50,7 @@ func get_pos_around_predator():
 	target.z = p_pos.z + randf_range(-200, 200)
 	target.y = 0
 	return target
-	
+
 func get_pos_on_other_side(pos):
 	var p_pos = _predatorRef.get_position()
 	var dir = pos.direction_to(p_pos)
@@ -66,10 +66,10 @@ func get_pos_on_other_side(pos):
 func _process(delta):
 	_detectNeighbors()
 	_target()
-	_cohesion()	
+	_cohesion()
 	_separation()
 	_alignment()
-	
+
 	#_borders(delta)
 	_escapePredator(delta)
 
@@ -77,8 +77,8 @@ func _detectNeighbors():
 	for i in range(_boids.size()):
 		_boids[i].neighbors.clear()
 		_boids[i].neighborsDistances.clear()
-	
-	for i in range(_boids.size()):		
+
+	for i in range(_boids.size()):
 		for j in range(i+1, _boids.size()):
 			var distance = _boids[i].get_position().distance_to(_boids[j].get_position())
 			if (distance <= visualRange):
@@ -98,15 +98,15 @@ func _target():
 func _cohesion():
 	for i in range(_boids.size()):
 		var neighbors = _boids[i].neighbors
-		
+
 		if (neighbors.is_empty()):
 			continue;
-		
+
 		var averagePos = Vector3(0, 0, 0)
 		for closeBoid in neighbors:
 			averagePos += closeBoid.get_position()
 		averagePos /= neighbors.size()
-		
+
 		var direction = averagePos - _boids[i].get_position()
 		_boids[i].acceleration += direction * cohesionWeight
 		_boids[i].acceleration.y = 0
@@ -115,32 +115,32 @@ func _separation():
 	for i in range(_boids.size()):
 		var neighbors = _boids[i].neighbors
 		var distances = _boids[i].neighborsDistances
-		
+
 		if (neighbors.is_empty()):
 			continue;
-			
+
 		for j in range(neighbors.size()):
 			if (distances[j] >= separationDistance):
 				continue
-			
+
 			var distMultiplier = 1 - (distances[j] / separationDistance)
 			var direction = _boids[i].get_position() - neighbors[j].get_position()
 			direction = direction.normalized()
 			_boids[i].acceleration += direction * distMultiplier * separationWeight
 			_boids[i].acceleration.y = 0
-			
+
 func _alignment():
 	for i in range(_boids.size()):
 		var neighbors = _boids[i].neighbors
-		
+
 		if (neighbors.is_empty()):
 			continue;
-		
+
 		var averageVel = Vector3(0, 0, 0)
 		for j in range(neighbors.size()):
 			averageVel += neighbors[j].velocity
 		averageVel /= neighbors.size()
-		
+
 		_boids[i].acceleration += averageVel * alignmentWeight
 		_boids[i].acceleration.y = 0
 

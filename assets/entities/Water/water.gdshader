@@ -71,7 +71,7 @@ void fragment() {
 	float flipped_y = (1. - uv.y);
 	float wave_numbers = 20.;
 	float wave = fract(ceil(UV.y * wave_numbers + uv_modifier.y * wave_numbers) * .1);
-	
+
 	float depth = texture(depth_texture, SCREEN_UV).x;
 	float check_this = (ceil((SCREEN_UV.y) * wave_numbers + 1.) / wave_numbers) ;
 	float check_next = (ceil(SCREEN_UV.y * wave_numbers) / wave_numbers);
@@ -82,7 +82,7 @@ void fragment() {
 	check_next = (check_next);
 	//check_this = mix(check_this, check_next, 1. - fract(uv_modifier.y));
 	//check_before = mix(check_this, check_before, fract(uv_modifier.y));
-	
+
 	float X = ((abs(sin(uv.x * wave_numbers + sin(TIME + rand(wave)) + uv_modifier.x)) * 0.8) + .1);
 	float wave_edge = fract((uv.y + fract(uv_modifier.y )) * (wave_numbers) + X );
 	float b = border(vec2(wave_edge, wave_edge), .06 );

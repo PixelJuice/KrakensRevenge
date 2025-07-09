@@ -99,7 +99,7 @@ vec4 draw_wave(float wave, vec2 uv, float bottom, float top, float power, float 
 	//wave_edge = mod(wave_edge, 2.0) - 1.0;//smoothstep(0.01, .99, fract(Y + wave));
 	float backgrund = when_gt(wave_edge, uv.y);
 	float outline = when_gt(wave_edge, uv.y-.008);
-	
+
 	//float outline2 = when_gt(uv.y, wave_edge);
 	//Y = fract(mod(Y, 2.0) - 1.0);
 	float at_edge = plot(uv, wave_edge);
@@ -113,9 +113,9 @@ vec4 draw_wave(float wave, vec2 uv, float bottom, float top, float power, float 
 
 void fragment() {
 	float depth = texture(depth_texture, SCREEN_UV).x;
-	
+
 	//float depth2 = FRAGCOORD.z;
-	//vec2 frag_ndc = ((FRAGCOORD.xy / VIEWPORT_SIZE) * 2.0) - 1.0; 
+	//vec2 frag_ndc = ((FRAGCOORD.xy / VIEWPORT_SIZE) * 2.0) - 1.0;
 	//vec2 world_modifier = fract(worldUV.xy / 1100.);
 	vec2 uv = fract(vec2(UV.x, UV.y ) + (TIME * .1));
 	vec4 first_wave = draw_wave(0., uv, .95, .3, 1.8, 0.);
@@ -133,7 +133,7 @@ void fragment() {
 	colours = mix(first_wave, colours, colours.a);*/
 	first_wave = draw_wave(.5, uv, 2.0, .3, 1.8, 1.);
 	colours = mix(first_wave, colours, colours.a);
-	
+
 	//colours = lerp(vec4(bottom_color, 1.), colours, 1.);
 	ALBEDO = colours.rgb;//mix(bottom_color, colours.rgb, colours.a);
 	//ALBEDO = vec3(background_color);
