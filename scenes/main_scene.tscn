@@ -27,6 +27,7 @@ shader_parameter/intensity = 0.51
 script = ExtResource("1_gubc5")
 
 [node name="start_game" parent="." instance=ExtResource("2_18nlu")]
+COUNTDOWN_TIME = 3.0
 
 [node name="Hud" type="CanvasLayer" parent="."]
 

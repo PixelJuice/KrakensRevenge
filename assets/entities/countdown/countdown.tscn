@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_6pbb6")
 game_start_label = NodePath("VBoxContainer/game_start")
 countdownLabel = NodePath("VBoxContainer/countdown")
+COUNTDOWN_TIME = 0.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

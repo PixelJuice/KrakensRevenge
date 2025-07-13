@@ -31,6 +31,9 @@ shader_parameter/normal_direction2 = Vector2(1.185, -1.56)
 [node name="Player" type="Node3D"]
 script = ExtResource("1_1dhvd")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MeshInstance3D")
+
 [node name="Area3D" type="Area3D" parent="."]
 unique_name_in_owner = true
 

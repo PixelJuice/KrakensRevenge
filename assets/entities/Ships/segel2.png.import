@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://opuidws3p2sd"
-path.s3tc="res://.godot/imported/boat.png-f490f52a3609ad68c0391d22dfa353c7.s3tc.ctex"
+uid="uid://dmbsacehmfkxm"
+path.s3tc="res://.godot/imported/segel2.png-a628e0333bd88a9456e1f54cec19fd86.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/entities/Ships/boat.png"
-dest_files=["res://.godot/imported/boat.png-f490f52a3609ad68c0391d22dfa353c7.s3tc.ctex"]
+source_file="res://assets/entities/Ships/segel2.png"
+dest_files=["res://.godot/imported/segel2.png-a628e0333bd88a9456e1f54cec19fd86.s3tc.ctex"]
 
 [params]
 

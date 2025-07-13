@@ -10,6 +10,7 @@ varying vec3 worldUV;
 
 void vertex() {
 	worldUV = (MODEL_MATRIX*vec4(VERTEX, 1.0)).xyz;
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
 }
 
 float rand(float n){return fract(sin(n) * 43758.5453123);}

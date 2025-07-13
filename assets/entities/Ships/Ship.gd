@@ -3,6 +3,7 @@ extends Sprite3D
 class_name Boid
 
 @onready var camera = get_viewport().get_camera_3d()
+@onready var animationPlayer = $AnimationPlayer
 
 @export var minVelocity: float = 5
 @export var maxVelocity: float = 10
@@ -32,7 +33,7 @@ func _ready():
 	maxVelocity = randf_range(minVelocity, maxVelocity)
 	maxEscapeVelocity = randf_range(minEscapeVelocity, maxEscapeVelocity)
 	maxAcceleration = randf_range(minAcceleration, maxAcceleration)
-
+	rotation.x = -75. * PI / 180.
 
 func _process(delta):
 	velocity += acceleration.limit_length(maxAcceleration * delta)
@@ -46,8 +47,25 @@ func _process(delta):
 
 	position.x += velocity.x * delta
 	position.z += velocity.z * delta
+	updateAnimation()
 	position.y = 0.8
+	rotation.x = -75. * PI / 180.
+
+
 
 func _get_eaten() -> void:
 	manager.remove_instance(self)
 	queue_free()
+
+func updateAnimation() -> void:
+	if abs(velocity.x) > abs(velocity.y):
+		if velocity.x > 0:
+			$AnimationPlayer.play("right")
+		else:
+			$AnimationPlayer.play("left")
+	else:
+		if velocity.y > 0:
+			$AnimationPlayer.play("down")
+		else:
+			$AnimationPlayer.play("up")
+	pass

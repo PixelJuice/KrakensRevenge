@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://opuidws3p2sd"
-path.s3tc="res://.godot/imported/boat.png-f490f52a3609ad68c0391d22dfa353c7.s3tc.ctex"
+uid="uid://brc14t1ivrjkp"
+path.s3tc="res://.godot/imported/Dots.png-1f4d9263ca7bfce316dc1fbb53fc588b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/entities/Ships/boat.png"
-dest_files=["res://.godot/imported/boat.png-f490f52a3609ad68c0391d22dfa353c7.s3tc.ctex"]
+source_file="res://assets/entities/Water/Textures/Dots.png"
+dest_files=["res://.godot/imported/Dots.png-1f4d9263ca7bfce316dc1fbb53fc588b.s3tc.ctex"]
 
 [params]
 
