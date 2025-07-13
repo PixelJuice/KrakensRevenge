@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ddy3p0ubnyxnl"]
 
-[ext_resource type="Texture2D" uid="uid://deqdb01ur2ca8" path="res://assets/entities/Ships/skrov.png" id="1_db4lj"]
 [ext_resource type="Shader" uid="uid://cfnbi30nfdtlk" path="res://assets/entities/Ships/Ship.gdshader" id="1_v5mu6"]
+[ext_resource type="Texture2D" uid="uid://gyq1yglhdtd4" path="res://assets/entities/Ships/textures/boat_blue1.png" id="2_v5mu6"]
 
 [resource]
 render_priority = 0
@@ -9,4 +9,4 @@ shader = ExtResource("1_v5mu6")
 shader_parameter/Outline_color = Color(0.840619, 0.394482, 1, 1)
 shader_parameter/top_color = Color(0.691357, 0.691357, 0.691357, 1)
 shader_parameter/bottom_color = Color(0.721732, 0.148525, 0.394919, 1)
-shader_parameter/Texture = ExtResource("1_db4lj")
+shader_parameter/Texture = ExtResource("2_v5mu6")

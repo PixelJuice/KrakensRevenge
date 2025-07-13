@@ -46,6 +46,7 @@ func spawn():
 	_boids.append(instance)
 	var start_pos = get_pos_around_predator()
 	instance.target = get_pos_around_predator()
+	instance.scale = Vector3(.12, .12, .12)
 	instance.set_position(Vector3(start_pos.x, 0, start_pos.z))
 	add_child(instance)
 
