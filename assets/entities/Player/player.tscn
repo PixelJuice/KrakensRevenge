@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://6rh3sbw26c63"]
 
-[ext_resource type="Script" uid="uid://ba2jp3fom5eol" path="res://assets/entities/Player/PlayerInput.gd" id="1_1dhvd"]
+[ext_resource type="Script" uid="uid://ba2jp3fom5eol" path="res://assets/entities/Player/Player.gd" id="1_1dhvd"]
 [ext_resource type="Shader" uid="uid://bb7afd4xf5dls" path="res://assets/entities/Player/kraken.gdshader" id="2_eoatv"]
 [ext_resource type="Texture2D" uid="uid://bx1t8e1w5lpqu" path="res://assets/entities/Player/textures/Kraken_shape.png" id="3_6dbxt"]
 [ext_resource type="Texture2D" uid="uid://cuiw2mwxtm1j0" path="res://assets/entities/Player/textures/Kraken_mask.png" id="3_r0s8f"]
@@ -16,8 +16,8 @@ size = Vector2(4, 4)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wbmrl"]
 render_priority = 0
 shader = ExtResource("2_eoatv")
-shader_parameter/shadow_colour = Color(0.0269211, 0.113254, 0.0550572, 1)
-shader_parameter/max_alpha = 0.25
+shader_parameter/shadow_colour = Color(0.232552, 0.112191, 0.0155402, 1)
+shader_parameter/max_alpha = 0.5
 shader_parameter/shadow_shape = ExtResource("3_6dbxt")
 shader_parameter/distortion_mask = ExtResource("3_r0s8f")
 shader_parameter/distortion = 0.49
@@ -32,6 +32,7 @@ shader_parameter/normal_direction2 = Vector2(1.185, -1.56)
 script = ExtResource("1_1dhvd")
 
 [node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000965118, 0, 0.0130916)

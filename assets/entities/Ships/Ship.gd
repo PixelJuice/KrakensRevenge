@@ -47,23 +47,6 @@ func _process(delta):
 	position.x += velocity.x * delta
 	position.z += velocity.z * delta
 	position.y = 0.8
-	#var look_target = Vector3(position.x + velocity.x, 3.0, position.z + velocity.z)
-	#look_at(look_target);
-	#rotate_y(rotationOffset);
-	#print(global_transform.origin)
-	#var screen_space_position = camera.unproject_position(global_transform.origin)
-
-	#var screen_space_position = camera.unproject_position(global_transform.origin) # Get screen-space position
-	#var viewport_size = get_viewport().get_visible_rect().size
-	#var normalized_position = Vector2(
-	#clamp(screen_space_position.x / viewport_size.x, 0.0, 1.0),
-	#clamp(screen_space_position.y / viewport_size.y, 0.0, 1.0))
-	#print(normalized_position)
-	#var shader_mat = material_override as ShaderMaterial
-	#shader_mat.set_shader_parameter("world_position", normalized_position)
-	#print(normalized_position)
-
-
 
 func _get_eaten() -> void:
 	manager.remove_instance(self)

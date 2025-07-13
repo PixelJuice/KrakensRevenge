@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://vbgdellinm4f"]
+
+[ext_resource type="Script" uid="uid://b3naunnr3n6a8" path="res://scenes/start_screen.gd" id="1_l6cm7"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 89.0
+offset_right = 503.0
+offset_bottom = 288.0
+script = ExtResource("1_l6cm7")
+
+[node name="start_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="option_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
+[node name="exit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/start_button" to="VBoxContainer" method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit_button" to="VBoxContainer" method="_on_quit_button_pressed"]

@@ -1,3 +1,4 @@
+class_name ShipManager
 extends Node3D
 
 # General configuration
@@ -7,19 +8,20 @@ extends Node3D
 @export var separationDistance: float = 50
 @export var predator: NodePath
 @export var predatorMinDist: float = 40
-@export var escapeTreshold: = 60
+@export var escapeTreshold: = 10
 var _predatorRef
 
 # Rule weights
 @export var cohesionWeight: float = .1
-@export var targetWeight: float = .3
+@export var targetWeight: float = .5
 @export var separationWeight: float = 80
 @export var alignmentWeight: float = .1
 
-@export var predatorWeight: float = 200
-@export var PredatorValueFade: float = 8
+@export var predatorWeight: float = 100
+@export var PredatorValueFade: float = 100
+@export var PREDATOR_COOLDOWN: float = 3.0
 var lastPredatorValue : float = 0
-
+var predator_cooldown: float = 0.0
 var _boids = []
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +31,14 @@ func _ready():
 	_predatorRef = get_node(predator)
 	for i in range(numberOfBoids):
 		spawn()
+	#pause()
+
+func _start_game():
+	# This function can be called to start the game, e.g. after a player has died
+	# or when the game is initialized.
+	for boid in _boids:
+		boid.set_process(true)
+	set_process(true)
 
 func spawn():
 	var instance = boidScene.instantiate()
@@ -145,25 +155,31 @@ func _alignment():
 		_boids[i].acceleration.y = 0
 
 func _escapePredator(delta):
-	for boid in _boids:
-		var dist = boid.get_position().distance_to(_predatorRef.get_position())
-		if (dist < predatorMinDist):
-			var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
-			var multiplier = sqrt(1 - (dist / predatorMinDist))
-			var playerVelocity = abs(get_node("../Player").currentVelocity)
-			var pw = (predatorWeight * (max(playerVelocity.x, playerVelocity.y ) * 5))
-			if pw < lastPredatorValue :
-				pw = lastPredatorValue - (PredatorValueFade * delta)
-			if pw > escapeTreshold :
-				boid.escaping = true
-			else :
-				boid.escaping = false
-			boid.acceleration += dir * multiplier * pw
-			boid.acceleration.y = 0
-			lastPredatorValue = pw
+	predator_cooldown -= delta
+
+	var playerVelocity = abs(get_node("../Player").input_direction)
+	if playerVelocity.length() > 0:
+		predator_cooldown = PREDATOR_COOLDOWN
+	if predator_cooldown > 0:
+		for boid in _boids:
+			var dist = boid.get_position().distance_to(_predatorRef.get_position())
+			if (dist < predatorMinDist):
+				var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
+				var multiplier = sqrt(1 - (dist / predatorMinDist))
+				var pw = (predatorWeight * (max(playerVelocity.x, playerVelocity.y ) * 5))
+				if pw < lastPredatorValue :
+					pw = lastPredatorValue - (PredatorValueFade * delta)
+					print(pw)
+				if pw > escapeTreshold :
+					boid.escaping = true
+				else :
+					boid.escaping = false
+				boid.acceleration += dir * multiplier * pw
+				boid.acceleration.y = 0
+				lastPredatorValue = pw
 
 
-func on_died() :
+func pause() :
 	for boid in _boids:
 		boid.set_process(false)
 	set_process(false)

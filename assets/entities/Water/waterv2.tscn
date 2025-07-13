@@ -1,26 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpdjka5waiw7l"]
+[gd_scene load_steps=9 format=3 uid="uid://dpdjka5waiw7l"]
 
 [ext_resource type="Shader" uid="uid://dbioux58x2j75" path="res://assets/entities/Water/water_plane.gdshader" id="1_yrjw4"]
 [ext_resource type="Texture2D" uid="uid://me1g0o1dd3wu" path="res://assets/entities/Water/Textures/Water_Normals_Colour_variation.png" id="2_3ofu0"]
 [ext_resource type="Texture2D" uid="uid://56fh1pt7h1xi" path="res://assets/entities/Water/Textures/Water_Normals_normals_001.png" id="2_awdex"]
 [ext_resource type="Texture2D" uid="uid://cb1yas7nwrwj8" path="res://assets/entities/Water/Textures/Water_Normals_normals_002.png" id="3_3ofu0"]
 [ext_resource type="Texture2D" uid="uid://10cu0yg0cu6w" path="res://assets/entities/Water/Textures/Water_Normals_Darker.png" id="3_f16uv"]
+[ext_resource type="Texture2D" uid="uid://d2ojt0ram604" path="res://assets/entities/Water/Textures/glitter_intensity.png" id="4_1dhib"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rlhhw"]
 render_priority = 0
 shader = ExtResource("1_yrjw4")
-shader_parameter/glitter_colour = Color(0.401493, 0.845327, 0.712387, 1)
-shader_parameter/glitter_amount = 0.18
+shader_parameter/glitter_colour = Color(0.276484, 0.479914, 0.483502, 1)
+shader_parameter/glitter_amount = 0.0
 shader_parameter/light_colour = Color(0.171166, 0.469758, 0.456587, 1)
-shader_parameter/dark_colour = Color(0.142011, 0.410189, 0.367059, 1)
-shader_parameter/darkness_colour = Color(0.113993, 0.357367, 0.265644, 1)
+shader_parameter/dark_colour = Color(0.0823529, 0.27451, 0.345098, 1)
+shader_parameter/darkness_colour = Color(0.00771613, 0.0618554, 0.0359351, 1)
 shader_parameter/depth = 0.2
 shader_parameter/distortion = 0.16
 shader_parameter/distortion_bottom = 0.1
 shader_parameter/distortion_speed = 0.3
 shader_parameter/colour_variation = ExtResource("2_3ofu0")
-shader_parameter/glitter_mask = ExtResource("3_3ofu0")
-shader_parameter/glitter_intensity = ExtResource("2_awdex")
+shader_parameter/glitter_mask = ExtResource("4_1dhib")
+shader_parameter/glitter_intensity = ExtResource("2_3ofu0")
 shader_parameter/darkness = ExtResource("3_f16uv")
 shader_parameter/texture_normal = ExtResource("2_awdex")
 shader_parameter/texture_normal2 = ExtResource("3_3ofu0")
