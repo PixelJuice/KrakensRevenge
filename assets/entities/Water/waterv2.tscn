@@ -1,24 +1,34 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpdjka5waiw7l"]
+[gd_scene load_steps=12 format=3 uid="uid://dpdjka5waiw7l"]
 
 [ext_resource type="Shader" uid="uid://dbioux58x2j75" path="res://assets/entities/Water/water_plane.gdshader" id="1_yrjw4"]
 [ext_resource type="Texture2D" uid="uid://me1g0o1dd3wu" path="res://assets/entities/Water/Textures/Water_Normals_Colour_variation.png" id="2_3ofu0"]
 [ext_resource type="Texture2D" uid="uid://56fh1pt7h1xi" path="res://assets/entities/Water/Textures/Water_Normals_normals_001.png" id="2_awdex"]
 [ext_resource type="Texture2D" uid="uid://cb1yas7nwrwj8" path="res://assets/entities/Water/Textures/Water_Normals_normals_002.png" id="3_3ofu0"]
 [ext_resource type="Texture2D" uid="uid://10cu0yg0cu6w" path="res://assets/entities/Water/Textures/Water_Normals_Darker.png" id="3_f16uv"]
-[ext_resource type="Texture2D" uid="uid://d2ojt0ram604" path="res://assets/entities/Water/Textures/glitter_intensity.png" id="4_1dhib"]
+[ext_resource type="Texture2D" uid="uid://byl4frdcmppp7" path="res://assets/entities/Water/Textures/glitter.png" id="4_jatuc"]
+[ext_resource type="Texture2D" uid="uid://c5ksc063otkub" path="res://assets/entities/Water/Textures/Dots_2.png" id="5_esw8g"]
+[ext_resource type="Texture2D" uid="uid://vn8nubce7yif" path="res://assets/entities/Water/Textures/glitter_2.png" id="5_vk4rq"]
 [ext_resource type="Texture2D" uid="uid://brc14t1ivrjkp" path="res://assets/entities/Water/Textures/Dots.png" id="6_esw8g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rlhhw"]
 render_priority = 0
 shader = ExtResource("1_yrjw4")
-shader_parameter/glitter_colour = Color(0.624392, 0.839599, 0.842308, 1)
-shader_parameter/glitter_alpha = 0.11
-shader_parameter/glitter1_size = 17.5
-shader_parameter/glitter2_size = 17.5
-shader_parameter/glitter_mask_size = 1.5
-shader_parameter/glitter_1_direction = Vector2(1.825, 0.16)
-shader_parameter/glitter_2_direction = Vector2(2.1, -0.065)
-shader_parameter/glitter_amount = 0.11
+shader_parameter/glitter_colour = Color(0.743615, 0.903694, 0.970181, 1)
+shader_parameter/glitter_alpha = 0.7
+shader_parameter/glitter1_size = 5.5
+shader_parameter/glitter2_size = 10.0
+shader_parameter/glitter_mix = 0.16
+shader_parameter/glitter_mask_size = 81.5
+shader_parameter/glitter_1_direction = Vector2(3.69, 2.77)
+shader_parameter/glitter_2_direction = Vector2(-0.905, -1.58)
+shader_parameter/glitter_mask_direction = Vector2(4.71, 3.535)
+shader_parameter/glitter_mask2_direction = Vector2(-1.53, -0.145)
+shader_parameter/glitter_threshold = 0.58
+shader_parameter/glitter_mask = ExtResource("6_esw8g")
+shader_parameter/glitter_mask2 = ExtResource("5_esw8g")
+shader_parameter/masking_mix = 0.5
+shader_parameter/glitter_1 = ExtResource("4_jatuc")
+shader_parameter/glitter_2 = ExtResource("5_vk4rq")
 shader_parameter/light_colour = Color(0.171166, 0.469758, 0.456587, 1)
 shader_parameter/dark_colour = Color(0.0823529, 0.27451, 0.345098, 1)
 shader_parameter/darkness_colour = Color(0.00771613, 0.0618554, 0.0359351, 1)
@@ -26,23 +36,26 @@ shader_parameter/depth = 0.2
 shader_parameter/distortion = 0.2
 shader_parameter/distortion_bottom = 0.1
 shader_parameter/distortion_speed = 0.36
+shader_parameter/water_alpha = 0.9
 shader_parameter/colour_variation = ExtResource("2_3ofu0")
-shader_parameter/glitter_mask = ExtResource("6_esw8g")
-shader_parameter/glitter_1 = ExtResource("2_awdex")
-shader_parameter/glitter_2 = ExtResource("4_1dhib")
 shader_parameter/darkness = ExtResource("3_f16uv")
 shader_parameter/texture_normal = ExtResource("2_awdex")
 shader_parameter/texture_normal2 = ExtResource("3_3ofu0")
 shader_parameter/normal_direction = Vector2(1.165, 1.06)
 shader_parameter/normal_direction2 = Vector2(1.905, -2.41)
+shader_parameter/wave_amplitude = 0.07
+shader_parameter/wave_frequency = 5.575
+shader_parameter/wave_speed = 2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i7xlu"]
 material = SubResource("ShaderMaterial_rlhhw")
 size = Vector2(100, 100)
-subdivide_width = 50
-subdivide_depth = 50
+subdivide_width = 100
+subdivide_depth = 100
 
 [node name="water" type="Node3D"]
 
 [node name="mesh" type="MeshInstance3D" parent="."]
+sorting_offset = 100.0
+sorting_use_aabb_center = false
 mesh = SubResource("PlaneMesh_i7xlu")

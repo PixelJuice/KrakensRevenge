@@ -47,8 +47,9 @@ func _process(delta):
 
 	position.x += velocity.x * delta
 	position.z += velocity.z * delta
+	sorting_offset = position.z -1
 	updateAnimation()
-	position.y = 0.8
+	position.y = 2
 	rotation.x = -75. * PI / 180.
 
 

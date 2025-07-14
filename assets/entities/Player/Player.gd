@@ -86,8 +86,10 @@ func _boost(delta: float) -> float:
 	return ACCELERATION
 
 func _eat() :
-	if Input.is_action_just_pressed("ui_accept") :
+	if Input.is_action_just_pressed("eat") and playerArea:
+		print("Eating")
 		for body in playerArea.get_overlapping_bodies():
+			print("Eating body: ", body.name)
 			body.GetEaten.emit()
 
 func pause() -> void:

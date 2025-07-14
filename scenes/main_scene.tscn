@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://jhsixvvqwbuc" path="res://scenes/lut_neutral.png" id="7_c16ls"]
 
 [sub_resource type="Environment" id="Environment_7ykc4"]
-background_color = Color(0.0392157, 0.329412, 0.423529, 1)
+background_mode = 1
 ambient_light_source = 1
 reflected_light_source = 1
 fog_mode = 1
@@ -21,29 +21,28 @@ fog_density = 0.28
 shader = ExtResource("6_rt2n2")
 shader_parameter/lut_texture = ExtResource("7_c16ls")
 shader_parameter/lut_size = 32.0
-shader_parameter/intensity = 0.51
+shader_parameter/intensity = 1.0
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_gubc5")
 
 [node name="start_game" parent="." instance=ExtResource("2_18nlu")]
-COUNTDOWN_TIME = 3.0
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="Hud" instance=ExtResource("1_pu3yx")]
 
 [node name="ShipManager" parent="." instance=ExtResource("1_7ykc4")]
-numberOfBoids = 20
 predator = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 DECELERATION = 0.07
 
 [node name="camera" type="Node3D" parent="Player"]
 
 [node name="Camera3D" type="Camera3D" parent="Player/camera"]
-transform = Transform3D(0.25, 0, 0, 0, 0.0647049, 0.241482, 0, -0.241482, 0.0647049, 0, 57.635, 18.31)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 56.2981, 29.5008)
 environment = SubResource("Environment_7ykc4")
 current = true
 size = 60.625
@@ -51,10 +50,10 @@ near = 0.001
 far = 300.0
 
 [node name="water" parent="Player" instance=ExtResource("5_gubc5")]
-transform = Transform3D(2.18, 0, 0, 0, 2.18, 0, 0, 0, 2.18, 0, -1.5, -7.59)
+transform = Transform3D(2.18, 0, 0, 0, 2.18, 0, 0, 0, 2.18, 0, 1, -7.59)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 0.0801989, 0.996779, 0, -0.996779, 0.0801989, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 93.8749)
 shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

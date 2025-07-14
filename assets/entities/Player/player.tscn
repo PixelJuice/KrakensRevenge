@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1yas7nwrwj8" path="res://assets/entities/Water/Textures/Water_Normals_normals_002.png" id="5_dadyc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1dhvd"]
-size = Vector3(6.04371, 1.61365, 3.99884)
+size = Vector3(6.04371, 2.34779, 3.99884)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bxbhd"]
 size = Vector2(4, 4)
@@ -38,11 +38,12 @@ root_node = NodePath("../MeshInstance3D")
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000965118, 0, 0.0130916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, 0.013)
 shape = SubResource("BoxShape3D_1dhvd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 1.16, 0, 0, 0)
+transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 1.482, 0, -1.51965, 0)
+sorting_offset = 101.0
 mesh = SubResource("PlaneMesh_bxbhd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_wbmrl")

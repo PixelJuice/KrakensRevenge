@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5qirp5hggcm0"]
+[gd_scene load_steps=13 format=3 uid="uid://c5qirp5hggcm0"]
 
 [ext_resource type="Script" uid="uid://240k33j5jgv1" path="res://assets/entities/Ships/Ship.gd" id="1_cqs1k"]
 [ext_resource type="Texture2D" uid="uid://gyq1yglhdtd4" path="res://assets/entities/Ships/textures/boat_blue1.png" id="2_ghcky"]
@@ -6,52 +6,180 @@
 [ext_resource type="Script" uid="uid://coucvpnff4hyy" path="res://assets/entities/Ships/Eaten.gd" id="3_rerji"]
 [ext_resource type="Texture2D" uid="uid://bwmobga8qhgfr" path="res://assets/entities/Ships/textures/boat_blue3.png" id="4_ghp8q"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cqs1k"]
+[sub_resource type="Animation" id="Animation_xkwc3"]
+resource_name = "down"
 
 [sub_resource type="Animation" id="Animation_ghp8q"]
 resource_name = "right"
-
-[sub_resource type="Animation" id="Animation_ghcky"]
-resource_name = "left"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.23333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.253073), Vector3(0, 0, 0.218166), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.23333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.825, 0, 0), Vector3(-1.346, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_v1jhq"]
 resource_name = "up"
 
-[sub_resource type="Animation" id="Animation_xkwc3"]
-resource_name = "down"
+[sub_resource type="Animation" id="Animation_u4nco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ghcky"]
+resource_name = "left"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.23333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.253073), Vector3(0, 0, 0.218166), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6, 3.23333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.825, 0, 0), Vector3(-1.346, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ghcky"]
 _data = {
+&"RESET": SubResource("Animation_u4nco"),
 &"down": SubResource("Animation_xkwc3"),
 &"left": SubResource("Animation_ghcky"),
 &"right": SubResource("Animation_ghp8q"),
 &"up": SubResource("Animation_v1jhq")
 }
 
-[node name="skrov" type="Sprite3D"]
-cast_shadow = 0
-texture = ExtResource("2_ghcky")
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqs1k"]
+size = Vector3(1, 2.61801, 0.420776)
+
+[node name="root" type="Sprite3D"]
+sorting_offset = 100.0
 script = ExtResource("1_cqs1k")
-
-[node name="segel_litet" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.76432)
-texture = ExtResource("3_ghp8q")
-
-[node name="segel_stort" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.74612)
-texture = ExtResource("4_ghp8q")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-script = ExtResource("3_rerji")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(74.535, 0, 0, 0, 74.535, 0, 0, 0, 74.535, 0, -7.74964, 0)
-shape = SubResource("BoxShape3D_cqs1k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+root_node = NodePath("../skrov")
 libraries = {
 &"": SubResource("AnimationLibrary_ghcky")
 }
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0)
+script = ExtResource("3_rerji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(7.11, 0, 0, 0, 7.11, 0, 0, 0, 7.11, 0, 0.41392, 0.0597161)
+shape = SubResource("BoxShape3D_cqs1k")
+
+[node name="skrov" type="Sprite3D" parent="."]
+sorting_offset = 60.0
+cast_shadow = 0
+alpha_cut = 1
+alpha_scissor_threshold = 0.568
+alpha_antialiasing_mode = 1
+texture_filter = 5
+texture = ExtResource("2_ghcky")
+region_rect = Rect2(102.085, 0, 4.875, 0)
+
+[node name="segel_litet" type="Sprite3D" parent="skrov"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.155665)
+sorting_offset = 300.0
+texture = ExtResource("3_ghp8q")
+
+[node name="segel_stort" type="Sprite3D" parent="skrov"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.235102)
+sorting_offset = 300.0
+texture = ExtResource("4_ghp8q")
 
 [connection signal="GetEaten" from="StaticBody3D" to="." method="_get_eaten"]

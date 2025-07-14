@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gyq1yglhdtd4"
-path.s3tc="res://.godot/imported/boat_blue1.png-718cb07bac5f4745f67086efe9991864.s3tc.ctex"
+uid="uid://c5ksc063otkub"
+path.s3tc="res://.godot/imported/Dots_2.png-d03fbc093db5c687ade9fc257e3ae047.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/entities/Ships/textures/boat_blue1.png"
-dest_files=["res://.godot/imported/boat_blue1.png-718cb07bac5f4745f67086efe9991864.s3tc.ctex"]
+source_file="res://assets/entities/Water/Textures/Dots_2.png"
+dest_files=["res://.godot/imported/Dots_2.png-d03fbc093db5c687ade9fc257e3ae047.s3tc.ctex"]
 
 [params]
 
@@ -31,5 +31,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=2048
+process/size_limit=0
 detect_3d/compress_to=0
