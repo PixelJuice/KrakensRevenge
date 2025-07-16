@@ -3,6 +3,9 @@ extends MarginContainer
 @export var boost : Boost
 @export var health : Health
 
+func _ready() -> void:
+	hide_hud()
+
 func _set_boost_value(value) :
 	boost.value = value
 

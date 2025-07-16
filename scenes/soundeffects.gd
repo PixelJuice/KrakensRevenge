@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func on_eating():
 	# Play eating sound effect
-	volume_linear = 1.0
+	volume_linear = .75
 	var stream_1 = polyphonic_player.play_stream(eat_1)
 	polyphonic_player.set_stream_pitch_scale(stream_1, randf_range(0.7, 1.2))
 	var stream_2 = polyphonic_player.play_stream(eat_2)

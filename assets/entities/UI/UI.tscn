@@ -55,20 +55,35 @@ diffuse_texture = SubResource("GradientTexture2D_dupts")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pitpu")
-boost = NodePath("Vertical/Boost_Bar")
-health = NodePath("Vertical/Health_Bar")
+boost = NodePath("Control/Vertical/Boost_Bar")
+health = NodePath("Control/Vertical/Health_Bar")
 
-[node name="Vertical" type="VBoxContainer" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 2
 
-[node name="Health_Bar" type="TextureProgressBar" parent="Vertical"]
+[node name="Score" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -107.615
+offset_top = 10.29
+offset_right = -10.615
+offset_bottom = 33.29
+grow_horizontal = 0
+text = "Score: 00000"
+
+[node name="Vertical" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 668.0
+
+[node name="Health_Bar" type="TextureProgressBar" parent="Control/Vertical"]
 layout_mode = 2
 max_value = 10000.0
 value = 100.0
@@ -76,7 +91,7 @@ texture_under = SubResource("NoiseTexture2D_dupts")
 texture_progress = SubResource("CanvasTexture_ipfip")
 script = ExtResource("2_dupts")
 
-[node name="Boost_Bar" type="TextureProgressBar" parent="Vertical"]
+[node name="Boost_Bar" type="TextureProgressBar" parent="Control/Vertical"]
 layout_mode = 2
 texture_under = SubResource("NoiseTexture2D_s5teh")
 texture_progress = SubResource("CanvasTexture_la5a8")

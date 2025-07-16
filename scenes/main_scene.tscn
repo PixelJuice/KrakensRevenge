@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://butt2mpk67je5"]
+[gd_scene load_steps=17 format=3 uid="uid://butt2mpk67je5"]
 
 [ext_resource type="PackedScene" uid="uid://djdx5iul76lqn" path="res://assets/entities/Ships/ShipManager.tscn" id="1_7ykc4"]
 [ext_resource type="Script" uid="uid://c5tynp5w1v4gf" path="res://scenes/Game.gd" id="1_gubc5"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cwqj4x4845wao" path="res://assets/entities/game_over/game_over.tscn" id="8_e1cbu"]
 [ext_resource type="Script" uid="uid://db80yqh1eny8f" path="res://scenes/MusicPlayer.gd" id="11_e1cbu"]
 [ext_resource type="Script" uid="uid://dcuet2jt7xmu1" path="res://scenes/soundeffects.gd" id="12_r6p65"]
+[ext_resource type="AudioStream" uid="uid://3csm0igq0og3" path="res://assets/Sound/beach_waves_ocean_water_soft_loop_01.wav" id="12_si52b"]
+[ext_resource type="Script" uid="uid://b8ww3wsp47wwd" path="res://scenes/Ambient.gd" id="13_01n6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rt2n2"]
 shader = ExtResource("6_rt2n2")
@@ -28,6 +30,7 @@ script = ExtResource("1_gubc5")
 
 [node name="ShipManager" parent="." instance=ExtResource("1_7ykc4")]
 predator = NodePath("../Player")
+predatorMinDist = 90.0
 
 [node name="camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6wevv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -37,8 +40,8 @@ player = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.37948, 0)
 cast_shadow = 0
 DECELERATION = 0.07
-HEALTH_DRAIN_MOVING = 10.0
-HEALTH_DRAIN_WAITING = 0.1
+HEALTH_DRAIN_MOVING = 5.0
+HEALTH_DRAIN_WAITING = 0.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 93.8749)
@@ -66,12 +69,19 @@ grow_vertical = 2
 [node name="Music" type="AudioStreamPlayer" parent="."]
 script = ExtResource("11_e1cbu")
 
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_si52b")
+volume_db = -7.0
+autoplay = true
+script = ExtResource("13_01n6w")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPolyphonic_e1cbu")
 script = ExtResource("12_r6p65")
 
 [connection signal="start_game" from="." to="start_game" method="start"]
 [connection signal="boost_value" from="Player" to="Hud2" method="_set_boost_value"]
+[connection signal="died" from="Player" to="Hud2" method="hide_hud"]
 [connection signal="died" from="Player" to="ShipManager" method="player_died"]
 [connection signal="died" from="Player" to="game_over" method="Show"]
 [connection signal="died" from="Player" to="Music" method="play_died"]
@@ -84,6 +94,7 @@ script = ExtResource("12_r6p65")
 [connection signal="quit_button" from="main_menu" to="." method="quit"]
 [connection signal="start_button" from="main_menu" to="start_game" method="start"]
 [connection signal="countdown_finished" from="start_game" to="Player" method="start"]
+[connection signal="countdown_started" from="start_game" to="Hud2" method="show_hud"]
 [connection signal="countdown_started" from="start_game" to="ShipManager" method="_start_game"]
 [connection signal="main_menu" from="game_over" to="main_menu" method="Show"]
 [connection signal="start_game" from="game_over" to="start_game" method="start"]

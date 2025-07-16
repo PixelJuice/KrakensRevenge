@@ -9,11 +9,11 @@ func _process(_delta):
 		play_music()
 
 func play_music() -> void:
-	volume_linear = 0.75
+	volume_linear = 0.5
 	stream = load("res://assets/Sound/music_epic_orchestral_bg_underscore.wav")
 	set_playing(true)
 
 func play_died() -> void:
-	volume_linear = 0.75
+	volume_linear = 0.5
 	stream = load("res://assets/Sound/Casual Lose 2.wav")
 	set_playing(true)

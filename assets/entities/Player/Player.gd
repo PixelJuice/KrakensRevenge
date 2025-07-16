@@ -83,6 +83,7 @@ func _process(delta: float) -> void:
 
 
 func on_died() :
+	animationPlayer.play("hiding")
 	set_process(false)
 
 
@@ -127,6 +128,7 @@ func _eat() :
 			health +=  HEALTH_PER_EAT
 			health = clampf(health, 0, MAX_HEALTH)
 			health_value.emit(health)
+			currentVelocity = Vector2.ZERO
 			set_process(false)
 			body.GetEaten.emit()
 			eating.emit()
@@ -145,5 +147,3 @@ func _on_animation_finished(anim_name: String):
 		animationPlayer.play("swim")
 		done_eating.emit()
 		set_process(true)
-	elif anim_name == "hiding":
-		animationPlayer.play("swim")
