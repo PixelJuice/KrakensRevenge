@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpgndgibryixa"
+path="res://.godot/imported/Death DRUMS.wav-c11554d9e3f1d4329e8c08f766080f21.sample"
+
+[deps]
+
+source_file="res://assets/Sound/Death DRUMS.wav"
+dest_files=["res://.godot/imported/Death DRUMS.wav-c11554d9e3f1d4329e8c08f766080f21.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

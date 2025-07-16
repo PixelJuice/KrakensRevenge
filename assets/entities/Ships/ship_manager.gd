@@ -23,22 +23,16 @@ var _predatorRef
 var lastPredatorValue : float = 0
 var predator_cooldown: float = 0.0
 var _boids = []
-
-# Called when the node enters the scene tree for the first time.
+	
 func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	randomize()
-	_predatorRef = get_node(predator)
-	for i in range(numberOfBoids):
-		spawn()
 	pause()
 
 func _start_game():
-	# This function can be called to start the game, e.g. after a player has died
-	# or when the game is initialized.
-	for boid in _boids:
-		boid.set_process(true)
+	randomize()
 	set_process(true)
+	_predatorRef = get_node(predator)
+	for i in range(numberOfBoids):
+		spawn()
 
 func spawn():
 	var instance = boidScene.instantiate()
@@ -189,3 +183,7 @@ func pause() :
 	for boid in _boids:
 		boid.set_process(false)
 	set_process(false)
+
+
+func _on_start_game_countdown_started() -> void:
+	pass # Replace with function body.

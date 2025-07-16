@@ -9,6 +9,7 @@ extends Sprite3D;
 @export var DECELERATION : float = 0.05;
 @export var BREAK : float = 0.25;
 @export var MAX_HEALTH : float = 100.0;
+@export var HEALTH_PER_EAT : float = 10.0;
 @export var HEALTH_DRAIN_MOVING : float = 100.0;
 @export var HEALTH_DRAIN_WAITING : float = 0.0;
 @export var MAX_BOOST : float = 100.0;
@@ -123,6 +124,9 @@ func _eat() :
 		print("Eating")
 		for body in playerArea.get_overlapping_bodies():
 			animationPlayer.play("eat")
+			health +=  HEALTH_PER_EAT
+			health = clampf(health, 0, MAX_HEALTH)
+			health_value.emit(health)
 			set_process(false)
 			body.GetEaten.emit()
 			eating.emit()

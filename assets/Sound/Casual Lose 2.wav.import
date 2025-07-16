@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lmw6gfoj2ljj"
+path="res://.godot/imported/Casual Lose 2.wav-200385e033efc324654793a749fa6086.sample"
+
+[deps]
+
+source_file="res://assets/Sound/Casual Lose 2.wav"
+dest_files=["res://.godot/imported/Casual Lose 2.wav-200385e033efc324654793a749fa6086.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
