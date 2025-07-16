@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv8e06rg2d2r6"]
+
+[ext_resource type="Script" uid="uid://3wxq3fp55dyy" path="res://scenes/camera.gd" id="1_diie0"]
+[ext_resource type="PackedScene" uid="uid://dpdjka5waiw7l" path="res://assets/entities/Water/waterv2.tscn" id="2_qqjab"]
+
+[sub_resource type="Environment" id="Environment_7ykc4"]
+background_mode = 1
+ambient_light_source = 1
+reflected_light_source = 1
+fog_mode = 1
+fog_light_color = Color(0.0707351, 0.177763, 0.218618, 1)
+fog_density = 0.28
+
+[sub_resource type="Animation" id="Animation_diie0"]
+resource_name = "zoom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.287175, 0.594603),
+"update": 0,
+"values": [75.0, 25.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.62451, 0.554785),
+"update": 0,
+"values": [Vector3(0, 56.2981, 29.5008), Vector3(0, 56.298, 2.641)]
+}
+
+[sub_resource type="Animation" id="Animation_qqjab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 56.2981, 29.5008)]
+}
+
+[sub_resource type="Animation" id="Animation_p6dlx"]
+resource_name = "unzoom"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.482968, 1),
+"update": 0,
+"values": [25.0, 75.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 56.298, 1.856), Vector3(0, 56.2981, 29.5008)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6dlx"]
+_data = {
+&"RESET": SubResource("Animation_qqjab"),
+&"unzoom": SubResource("Animation_p6dlx"),
+&"zoom": SubResource("Animation_diie0")
+}
+
+[node name="camera" type="Node3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_diie0")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 56.2981, 29.5008)
+environment = SubResource("Environment_7ykc4")
+current = true
+size = 60.625
+near = 0.001
+far = 300.0
+
+[node name="water" parent="." instance=ExtResource("2_qqjab")]
+transform = Transform3D(2.18, 0, 0, 0, 2.18, 0, 0, 0, 2.18, 0, 0.999996, -7.59)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_p6dlx")
+}

@@ -43,8 +43,8 @@ shader_parameter/texture_normal = ExtResource("2_awdex")
 shader_parameter/texture_normal2 = ExtResource("3_3ofu0")
 shader_parameter/normal_direction = Vector2(1.165, 1.06)
 shader_parameter/normal_direction2 = Vector2(1.905, -2.41)
-shader_parameter/wave_amplitude = 0.07
-shader_parameter/wave_frequency = 5.575
+shader_parameter/wave_amplitude = 0.04
+shader_parameter/wave_frequency = 4.735
 shader_parameter/wave_speed = 2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i7xlu"]

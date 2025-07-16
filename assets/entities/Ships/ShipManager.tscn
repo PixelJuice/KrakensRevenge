@@ -6,3 +6,4 @@
 [node name="ShipManager" type="Node3D"]
 script = ExtResource("1_6r3h3")
 boidScene = ExtResource("2_jlkm4")
+numberOfBoids = 20

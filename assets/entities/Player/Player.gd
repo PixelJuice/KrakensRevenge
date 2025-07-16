@@ -1,30 +1,53 @@
 class_name Player
-extends Node3D;
+extends Sprite3D;
 
 @export var MAX_SPEED : float  = 0.5;
-@export var MAX_SPEED_BOOST : float = 1.5;
+@export var MAX_SPEED_BOOST : float = 1;
 @export var BOOST_COST : float = 10.;
 @export var ACCELERATION : float = 0.2;
 @export var BOOST_ACCELERATION : float = 20.;
 @export var DECELERATION : float = 0.05;
 @export var BREAK : float = 0.25;
+@export var MAX_HEALTH : float = 100.0;
+@export var HEALTH_DRAIN_MOVING : float = 100.0;
+@export var HEALTH_DRAIN_WAITING : float = 0.0;
+@export var MAX_BOOST : float = 100.0;
+@onready var animationPlayer = $AnimationPlayer
+@onready var playerArea = $Area3D
+@onready var eat_animation : AnimatedSprite3D = $Eating
 var currentVelocity := Vector2.ZERO
 var input_direction : Vector2 = Vector2.ZERO
-var playerArea : Node3D
 var boosted : bool = false
-var boost : float = 100
-var health : float = 100.0
+var boost : float = MAX_HEALTH
+var health : float = MAX_BOOST
 var boost_timer : float = 0.0
 
 
 signal boost_value(value)
 signal health_value(value)
+signal max_boost(value)
+signal max_health(value)
 signal died
+signal eating
+signal done_eating
 
 func _ready() -> void:
-	playerArea = get_node("%Area3D")
+	animationPlayer.play("hiding")
+	animationPlayer.animation_finished.connect(_on_animation_finished)
+	pause()
 
-	#pause()
+func start() -> void:
+	set_process(true)
+	animationPlayer.play("swim")
+	print("Player started")
+	currentVelocity = Vector2.ZERO
+	boosted = false
+	boost = MAX_BOOST
+	health = MAX_HEALTH
+	max_boost.emit(MAX_BOOST)
+	max_health.emit(MAX_HEALTH)
+	boost_value.emit(boost)
+	health_value.emit(health)
 
 func _process(delta: float) -> void:
 	var acceleration = _boost(delta)
@@ -51,20 +74,30 @@ func _process(delta: float) -> void:
 			currentVelocity = currentVelocity.move_toward(Vector2.ZERO, BREAK * delta)
 			#print("break", currentVelocity)
 
-	update_health(delta, input_direction)
+	update_health(delta, currentVelocity)
 	position.x += currentVelocity.x
 	position.z += currentVelocity.y
+	#rotation.x = -75. * PI / 180.
+	#sorting_offset = position.z -1
 
 
 func on_died() :
 	set_process(false)
 
-func update_health(delta: float, direction: Vector2) -> void:
-	if direction.length() > 0:
-		pass
-		#health.value -= 500 * delta
-	else:
-		pass
+
+
+func update_health(delta: float, velocity: Vector2) -> void:
+	var health_drain = HEALTH_DRAIN_WAITING
+	if velocity.length() > 0:
+		health_drain = HEALTH_DRAIN_MOVING
+
+	health -= delta * health_drain
+	health = clampf(health, 0, MAX_HEALTH)
+	health_value.emit(health)
+	if health <= 0:
+		print("Player died")
+		died.emit()
+		on_died()
 
 
 func _boost(delta: float) -> float:
@@ -89,8 +122,24 @@ func _eat() :
 	if Input.is_action_just_pressed("eat") and playerArea:
 		print("Eating")
 		for body in playerArea.get_overlapping_bodies():
-			print("Eating body: ", body.name)
+			animationPlayer.play("eat")
+			set_process(false)
 			body.GetEaten.emit()
+			eating.emit()
+
 
 func pause() -> void:
 	set_process(false)
+
+func unpause() -> void:
+	animationPlayer.play("swim")
+	set_process(true)
+
+
+func _on_animation_finished(anim_name: String):
+	if anim_name == "eat":
+		animationPlayer.play("swim")
+		done_eating.emit()
+		set_process(true)
+	elif anim_name == "hiding":
+		animationPlayer.play("swim")

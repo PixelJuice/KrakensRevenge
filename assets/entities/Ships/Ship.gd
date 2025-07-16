@@ -16,7 +16,6 @@ class_name Boid
 @export var maxAcceleration: float = 80
 @export var minAcceleration: float = 20
 
-@export var rotationOffset: float = PI/2
 var velocity := Vector3.ZERO
 var acceleration := Vector3.ZERO
 
@@ -49,7 +48,7 @@ func _process(delta):
 	position.z += velocity.z * delta
 	sorting_offset = position.z -1
 	updateAnimation()
-	position.y = 2
+	position.y = 1.9
 	rotation.x = -75. * PI / 180.
 
 

@@ -31,7 +31,7 @@ func _ready():
 	_predatorRef = get_node(predator)
 	for i in range(numberOfBoids):
 		spawn()
-	#pause()
+	pause()
 
 func _start_game():
 	# This function can be called to start the game, e.g. after a player has died
@@ -50,6 +50,12 @@ func spawn():
 	#instance.scale = Vector3(.12, .12, .12)
 	add_child(instance)
 
+func player_died():
+	for boid in _boids:
+		boid.queue_free()
+	_boids.clear()
+	pause()
+
 func get_pos_on_other_side(boid : Sprite3D) -> Vector3:
 	return get_pos_outside_camera_view(get_direction_to_predator(boid))
 
@@ -66,7 +72,7 @@ func get_direction_to_predator(boid : Sprite3D) -> Vector3:
 
 func get_pos_outside_camera_view(dir : Vector3) -> Vector3:
 	var p_pos = _predatorRef.get_position()
-	var offset_distance = 130 # Adjust this value as needed
+	var offset_distance = randf_range(130, 200)
 	var pos = p_pos + dir * offset_distance
 	pos.y = 0
 	return pos
@@ -81,7 +87,6 @@ func _process(delta):
 	_cohesion()
 	_separation()
 	_alignment()
-
 	#_borders(delta)
 	_escapePredator(delta)
 

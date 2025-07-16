@@ -39,8 +39,12 @@ uniform float wave_speed = 2.0;
 varying vec3 worldUV;
 
 void vertex() {
+	vec4 world_pos = vec4(VERTEX, 1.0);
 	worldUV = (MODEL_MATRIX*vec4(VERTEX, 1.0)).xyz;
-	VERTEX.y += sin(VERTEX.x * wave_frequency + TIME * wave_speed) * wave_amplitude;
+	vec4 clip_pos = PROJECTION_MATRIX * VIEW_MATRIX * world_pos;
+    vec2 ndc = clip_pos.xy / clip_pos.w; // normalized device coordinates (-1.0 .. 1.0)
+    vec2 screen_uv = ndc * 0.5 + 0.5;    // convert to (0.0 .. 1.0)
+	VERTEX.y += sin(world_pos.x * wave_frequency + TIME * wave_speed) * wave_amplitude;
 }
 
 vec3 remap_value(vec3 value, vec3 old_min, vec3 old_max, vec3 new_min, vec3 new_max){
