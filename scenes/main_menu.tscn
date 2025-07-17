@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://vbgdellinm4f"]
+[gd_scene load_steps=7 format=3 uid="uid://vbgdellinm4f"]
 
 [ext_resource type="Script" uid="uid://b3naunnr3n6a8" path="res://scenes/start_screen.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" uid="uid://8tbs5y2p2tvb" path="res://icon.svg" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dap41ceb84jdx" path="res://assets/menus/textures/start.png" id="2_8ln24"]
+[ext_resource type="Texture2D" uid="uid://cmf7gbplv7hfi" path="res://assets/entities/Player/textures/krakie_eat.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://b1ixdk7c2etab" path="res://assets/menus/textures/title.png" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://yx04hfjse4xm" path="res://assets/menus/textures/options.png" id="3_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://dgem5kselplcq" path="res://assets/menus/textures/exit.png" id="4_oa1go"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -14,58 +18,58 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_l6cm7")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -376.0
-offset_right = 376.0
-offset_bottom = 457.0
+offset_left = -626.0
+offset_top = 85.0
+offset_right = 650.0
+offset_bottom = 224.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 166
-text = "Title
-"
-horizontal_alignment = 1
+texture = ExtResource("2_rtw2f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = 76.0
-offset_right = 124.0
-offset_bottom = 177.0
+offset_left = 74.0
+offset_top = -344.0
+offset_right = 815.0
+offset_bottom = 646.0
 grow_vertical = 2
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="start_button" type="Button" parent="VBoxContainer"]
+[node name="start_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "Start"
+texture_normal = ExtResource("2_8ln24")
 
-[node name="option_button" type="Button" parent="VBoxContainer"]
+[node name="option_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "How To"
+texture_normal = ExtResource("3_rtw2f")
 
-[node name="exit_button" type="Button" parent="VBoxContainer"]
+[node name="exit_button" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-text = "Exit"
+texture_normal = ExtResource("4_oa1go")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -352.0
-offset_top = 76.0
-offset_right = -224.0
-offset_bottom = 204.0
+anchor_bottom = 1.0
+offset_left = -858.0
+offset_top = 278.0
+offset_right = -3.0
+offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("2_ekxnf")
+expand_mode = 4
+stretch_mode = 5
 
 [connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/exit_button" to="." method="_on_quit_button_pressed"]

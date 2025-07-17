@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwqj4x4845wao"]
+[gd_scene load_steps=3 format=3 uid="uid://cwqj4x4845wao"]
 
 [ext_resource type="Script" uid="uid://f8s1byeuqkfk" path="res://assets/entities/game_over/game_over.gd" id="1_052av"]
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/font.tres" id="2_tbegy"]
 
-[sub_resource type="SystemFont" id="SystemFont_1u2db"]
-subpixel_positioning = 0
-
-[sub_resource type="Theme" id="Theme_052av"]
-default_font = SubResource("SystemFont_1u2db")
-
-[node name="game_over" type="Control"]
+[node name="game_over" type="Control" node_paths=PackedStringArray("score_label", "highscore_label")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,6 +15,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_052av")
+score_label = NodePath("VBoxContainer/Score")
+highscore_label = NodePath("VBoxContainer/Highscore")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -30,21 +27,35 @@ offset_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 25
 alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_tbegy")
+text = "Score :"
+horizontal_alignment = 1
+
+[node name="Highscore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_tbegy")
+text = "Highscore:"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_052av")
+theme = ExtResource("2_tbegy")
 theme_override_font_sizes/font_size = 121
 text = "You Starved"
 
 [node name="Restart" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_tbegy")
 text = "Feast Again?"
 
 [node name="Menu" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_tbegy")
 text = "Main Menu"
 
 [connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_start_button_pressed"]

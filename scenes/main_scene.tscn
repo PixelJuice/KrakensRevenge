@@ -29,15 +29,18 @@ script = ExtResource("1_gubc5")
 [node name="Hud2" parent="." instance=ExtResource("1_pu3yx")]
 
 [node name="ShipManager" parent="." instance=ExtResource("1_7ykc4")]
+numberOfBoids = 50
 predator = NodePath("../Player")
 predatorMinDist = 90.0
+escapeTreshold = 30
+predatorWeight = 500.0
 
 [node name="camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6wevv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.37948, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
 cast_shadow = 0
 DECELERATION = 0.07
 HEALTH_DRAIN_MOVING = 5.0
@@ -79,8 +82,12 @@ script = ExtResource("13_01n6w")
 stream = SubResource("AudioStreamPolyphonic_e1cbu")
 script = ExtResource("12_r6p65")
 
+[connection signal="final_score" from="." to="game_over" method="set_score"]
+[connection signal="score_changed" from="." to="Hud2" method="set_score"]
 [connection signal="start_game" from="." to="start_game" method="start"]
+[connection signal="ship_eaten" from="ShipManager" to="." method="change_score"]
 [connection signal="boost_value" from="Player" to="Hud2" method="_set_boost_value"]
+[connection signal="died" from="Player" to="." method="on_died"]
 [connection signal="died" from="Player" to="Hud2" method="hide_hud"]
 [connection signal="died" from="Player" to="ShipManager" method="player_died"]
 [connection signal="died" from="Player" to="game_over" method="Show"]

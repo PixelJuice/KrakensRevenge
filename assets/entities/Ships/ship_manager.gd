@@ -9,6 +9,7 @@ extends Node3D
 @export var predator: NodePath
 @export var predatorMinDist: float = 40
 @export var escapeTreshold: = 10
+@export var difficulty_increase: float = .1
 var _predatorRef
 
 # Rule weights
@@ -18,17 +19,20 @@ var _predatorRef
 @export var alignmentWeight: float = .1
 
 @export var predatorWeight: float = 100
-@export var PredatorValueFade: float = 100
 @export var PREDATOR_COOLDOWN: float = 3.0
 var lastPredatorValue : float = 0
 var predator_cooldown: float = 0.0
 var _boids = []
+var ships_eaten = 0
+
+signal ship_eaten(value: int)
 	
 func _ready():
 	pause()
 
 func _start_game():
 	randomize()
+	ships_eaten = 0
 	set_process(true)
 	_predatorRef = get_node(predator)
 	for i in range(numberOfBoids):
@@ -36,6 +40,11 @@ func _start_game():
 
 func spawn():
 	var instance = boidScene.instantiate()
+	instance.maxEscapeVelocity += ships_eaten * difficulty_increase
+	instance.minEscapeVelocity += ships_eaten * difficulty_increase
+	instance.maxVelocity += ships_eaten * difficulty_increase
+	instance.minVelocity += ships_eaten * difficulty_increase
+	instance.set_values()
 	instance.manager = self
 	_boids.append(instance)
 	var start_pos = get_pos_outside_camera_view(get_random_direction())
@@ -48,6 +57,7 @@ func player_died():
 	for boid in _boids:
 		boid.queue_free()
 	_boids.clear()
+	ships_eaten = 0
 	pause()
 
 func get_pos_on_other_side(boid : Sprite3D) -> Vector3:
@@ -72,6 +82,8 @@ func get_pos_outside_camera_view(dir : Vector3) -> Vector3:
 	return pos
 
 func remove_instance(boid):
+	ships_eaten += 1
+	emit_signal("ship_eaten", ships_eaten)
 	_boids.erase(boid)
 	spawn()
 
@@ -158,25 +170,32 @@ func _alignment():
 func _escapePredator(delta):
 	predator_cooldown -= delta
 
-	var playerVelocity = abs(get_node("../Player").input_direction)
+	# Get the player's velocity to reset the cooldown
+	var playerVelocity = abs(_predatorRef.currentVelocity)
 	if playerVelocity.length() > 0:
 		predator_cooldown = PREDATOR_COOLDOWN
-	if predator_cooldown > 0:
-		for boid in _boids:
-			var dist = boid.get_position().distance_to(_predatorRef.get_position())
-			if (dist < predatorMinDist):
-				var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
-				var multiplier = sqrt(1 - (dist / predatorMinDist))
-				var pw = (predatorWeight * (max(playerVelocity.x, playerVelocity.y ) * 5))
-				if pw < lastPredatorValue :
-					pw = lastPredatorValue - (PredatorValueFade * delta)
-				if pw > escapeTreshold :
-					boid.escaping = true
-				else :
+
+		# Only process predator escape if cooldown is active
+		if predator_cooldown > 0:
+			for boid in _boids:
+				var dist = boid.get_position().distance_to(_predatorRef.get_position())
+
+			# Check if the boid is within the predator's range
+				if dist < predatorMinDist:
+					# Calculate the escape direction
+					var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
+
+					# Scale acceleration based on distance (closer = stronger acceleration)
+					var distance_factor = 1.0 - (dist / predatorMinDist) # Closer = higher factor
+					var scaled_acceleration = predatorWeight * distance_factor
+					# Apply acceleration to the boid
+					boid.acceleration += dir * scaled_acceleration
+					boid.acceleration.y = 0
+
+					# Determine if the boid is escaping
+					boid.escaping = scaled_acceleration > escapeTreshold
+				else:
 					boid.escaping = false
-				boid.acceleration += dir * multiplier * pw
-				boid.acceleration.y = 0
-				lastPredatorValue = pw
 
 
 func pause() :

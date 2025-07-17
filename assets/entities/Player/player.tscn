@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://6rh3sbw26c63"]
+[gd_scene load_steps=18 format=3 uid="uid://6rh3sbw26c63"]
 
 [ext_resource type="Script" uid="uid://ba2jp3fom5eol" path="res://assets/entities/Player/Player.gd" id="1_1dhvd"]
 [ext_resource type="Shader" uid="uid://bb7afd4xf5dls" path="res://assets/entities/Player/kraken.gdshader" id="2_eoatv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://56fh1pt7h1xi" path="res://assets/entities/Water/Textures/Water_Normals_normals_001.png" id="4_r0s8f"]
 [ext_resource type="Texture2D" uid="uid://cb1yas7nwrwj8" path="res://assets/entities/Water/Textures/Water_Normals_normals_002.png" id="5_dadyc"]
 [ext_resource type="SpriteFrames" uid="uid://d01l8sd1eaor5" path="res://assets/entities/Player/player.tres" id="7_dadyc"]
+[ext_resource type="Texture2D" uid="uid://cmf7gbplv7hfi" path="res://assets/entities/Player/textures/krakie_eat.png" id="8_nhrgk"]
 
 [sub_resource type="Animation" id="Animation_6prak"]
 length = 0.001
@@ -81,6 +82,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(2.555, 2.555, 1.482)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Face:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Face:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.11048, 2.49896, 3.33922)]
 }
 
 [sub_resource type="Animation" id="Animation_cqx0g"]
@@ -161,6 +186,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.248, -11.482, 9.898)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Face:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Face:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.866667, 1.56667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1.31951, 1),
+"update": 0,
+"values": [Vector3(4.11, -2.274, 10.995), Vector3(4.11, 0.573, 7.388), Vector3(4.11024, 1.49771, 5.38048), Vector3(4.11048, 2.49896, 3.33922), Vector3(4.11, -13.281, 16.864)]
+}
 
 [sub_resource type="Animation" id="Animation_ii5kg"]
 resource_name = "hiding"
@@ -183,6 +232,18 @@ tracks/1/path = NodePath("Eating:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Face:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -276,8 +337,14 @@ surface_material_override/0 = SubResource("ShaderMaterial_wbmrl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow"]
 
 [node name="Eating" type="AnimatedSprite3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.247525, 3.99758, -5.94217)
 cast_shadow = 0
 alpha_cut = 1
 sprite_frames = ExtResource("7_dadyc")
+
+[node name="Face" type="Sprite3D" parent="."]
+transform = Transform3D(0.695, 0, 0, 0, 0.179879, 0.671318, 0, -0.671318, 0.179879, 4.11048, 2.49896, 3.33922)
+visible = false
+cast_shadow = 0
+alpha_cut = 2
+texture = ExtResource("8_nhrgk")

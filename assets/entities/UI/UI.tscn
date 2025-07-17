@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://l6epy2wfm7k6"]
+[gd_scene load_steps=17 format=3 uid="uid://l6epy2wfm7k6"]
 
 [ext_resource type="Script" uid="uid://b3cu2dwpsaakk" path="res://assets/entities/UI/UI.gd" id="1_pitpu"]
 [ext_resource type="Script" uid="uid://g0dop31ykpxt" path="res://assets/entities/UI/Health.gd" id="2_dupts"]
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/font.tres" id="2_ipfip"]
+[ext_resource type="Script" uid="uid://bo2r4fcsm7ugr" path="res://assets/entities/UI/score.gd" id="2_s5teh"]
 [ext_resource type="Script" uid="uid://jo03bgcaugqp" path="res://assets/entities/UI/Boost.gd" id="3_la5a8"]
 
 [sub_resource type="Gradient" id="Gradient_yhi3q"]
@@ -51,7 +53,7 @@ height = 32
 [sub_resource type="CanvasTexture" id="CanvasTexture_la5a8"]
 diffuse_texture = SubResource("GradientTexture2D_dupts")
 
-[node name="Control" type="MarginContainer" node_paths=PackedStringArray("boost", "health")]
+[node name="Control" type="MarginContainer" node_paths=PackedStringArray("boost", "health", "score")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,6 +62,7 @@ grow_vertical = 2
 script = ExtResource("1_pitpu")
 boost = NodePath("Control/Vertical/Boost_Bar")
 health = NodePath("Control/Vertical/Health_Bar")
+score = NodePath("Control/Score")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
@@ -69,12 +72,14 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -107.615
-offset_top = 10.29
-offset_right = -10.615
-offset_bottom = 33.29
+offset_left = -345.0
+offset_top = 55.0
+offset_right = -58.0
+offset_bottom = 118.0
 grow_horizontal = 0
+theme = ExtResource("2_ipfip")
 text = "Score: 00000"
+script = ExtResource("2_s5teh")
 
 [node name="Vertical" type="VBoxContainer" parent="Control"]
 layout_mode = 1

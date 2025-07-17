@@ -15,7 +15,6 @@ extends Sprite3D;
 @export var MAX_BOOST : float = 100.0;
 @onready var animationPlayer = $AnimationPlayer
 @onready var playerArea = $Area3D
-@onready var eat_animation : AnimatedSprite3D = $Eating
 var currentVelocity := Vector2.ZERO
 var input_direction : Vector2 = Vector2.ZERO
 var boosted : bool = false

@@ -27,7 +27,7 @@ var escaping = false
 
 var manager
 
-func _ready():
+func set_values():
 	velocity = Vector3(randf_range(-maxVelocity + 5.0, maxVelocity -5.0), 0, randf_range(-maxVelocity + 5.0, maxVelocity -5.0))
 	maxVelocity = randf_range(minVelocity, maxVelocity)
 	maxEscapeVelocity = randf_range(minEscapeVelocity, maxEscapeVelocity)
@@ -58,13 +58,13 @@ func _get_eaten() -> void:
 	queue_free()
 
 func updateAnimation() -> void:
-	if abs(velocity.x) > abs(velocity.y):
+	if abs(velocity.x) > abs(velocity.z):
 		if velocity.x > 0:
 			$AnimationPlayer.play("right")
 		else:
 			$AnimationPlayer.play("left")
 	else:
-		if velocity.y > 0:
+		if velocity.z > 0:
 			$AnimationPlayer.play("down")
 		else:
 			$AnimationPlayer.play("up")

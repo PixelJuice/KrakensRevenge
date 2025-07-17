@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cijt0delmypav"]
+[gd_scene load_steps=3 format=3 uid="uid://cijt0delmypav"]
 
 [ext_resource type="Script" uid="uid://bl6r8jcm30cs2" path="res://assets/entities/countdown/countdown.gd" id="1_6pbb6"]
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/font.tres" id="2_7ee48"]
 
 [node name="start_game" type="Control" node_paths=PackedStringArray("game_start_label", "countdownLabel")]
 layout_mode = 3
@@ -40,12 +41,14 @@ alignment = 1
 
 [node name="game_start" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7ee48")
 text = "Get ready!"
 fit_content = true
 horizontal_alignment = 1
 
 [node name="countdown" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_7ee48")
 text = "5..."
 fit_content = true
 horizontal_alignment = 1
