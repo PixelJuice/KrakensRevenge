@@ -23,6 +23,7 @@ Options="*res://assets/menus/GlobalOptions.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/per_pixel_transparency/allowed=true
 
 [input]
 
@@ -82,6 +83,12 @@ eat={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
-textures/canvas_textures/default_texture_repeat=1
+textures/lossless_compression/force_png=true
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/default_filters/anisotropic_filtering_level=1
+camera/depth_of_field/depth_of_field_bokeh_quality=2
+camera/depth_of_field/depth_of_field_use_jitter=true
+viewport/hdr_2d=true
 anti_aliasing/quality/msaa_3d=1
+lights_and_shadows/tighter_shadow_caster_culling=false

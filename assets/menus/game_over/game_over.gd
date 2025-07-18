@@ -20,6 +20,7 @@ func _on_menu_button_pressed() -> void:
 
 func Show() -> void:
 	visible = true
+	$%restart.grab_focus()
 	set_process(true)
 
 func set_score(value: int, highscore: int) -> void:

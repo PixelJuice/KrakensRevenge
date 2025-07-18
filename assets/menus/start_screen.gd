@@ -4,6 +4,9 @@ signal start_button
 signal quit_button
 signal options_button
 
+func _ready() -> void:
+	$%start_button.grab_focus()
+
 func _on_start_button_pressed() -> void:
 	visible = false
 	emit_signal("start_button")
@@ -19,3 +22,4 @@ func _on_options_button_pressed() -> void:
 
 func Show() -> void:
 	visible = true
+	$%start_button.grab_focus()

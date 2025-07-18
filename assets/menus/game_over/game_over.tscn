@@ -55,15 +55,20 @@ horizontal_alignment = 1
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Restart" type="Button" parent="VBoxContainer/VBoxContainer2"]
+[node name="restart" type="Button" parent="VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../Menu")
+focus_neighbor_bottom = NodePath("../Menu")
 theme = ExtResource("2_tbegy")
 text = "FEAST AGAIN?"
 
 [node name="Menu" type="Button" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../restart")
+focus_neighbor_bottom = NodePath("../restart")
 theme = ExtResource("2_tbegy")
 text = "MAIN MENU"
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/Restart" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/restart" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/Menu" to="." method="_on_menu_button_pressed"]

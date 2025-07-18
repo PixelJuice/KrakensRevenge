@@ -12,9 +12,12 @@ extends Sprite3D;
 @export var HEALTH_PER_EAT : float = 10.0;
 @export var HEALTH_DRAIN_MOVING : float = 100.0;
 @export var HEALTH_DRAIN_WAITING : float = 0.0;
+@export var PREDATOR_COOLDOWN: float = 3.0
+@export var PREDATOR_COOLDOWN_EATING: float = 5.0
 @export var MAX_BOOST : float = 100.0;
 @onready var animationPlayer = $AnimationPlayer
 @onready var playerArea = $Area3D
+@onready var tail = $tail
 var currentVelocity := Vector2.ZERO
 var input_direction : Vector2 = Vector2.ZERO
 var boosted : bool = false
@@ -30,6 +33,7 @@ signal max_health(value)
 signal died
 signal eating
 signal done_eating
+signal scare
 
 func _ready() -> void:
 	animationPlayer.play("hiding")
@@ -38,7 +42,7 @@ func _ready() -> void:
 
 func start() -> void:
 	set_process(true)
-	animationPlayer.play("swim")
+	animationPlayer.play("appear")
 	print("Player started")
 	currentVelocity = Vector2.ZERO
 	boosted = false
@@ -79,6 +83,26 @@ func _process(delta: float) -> void:
 	position.z += currentVelocity.y
 	#rotation.x = -75. * PI / 180.
 	#sorting_offset = position.z -1
+	if currentVelocity.length() > 0:
+		scare.emit(PREDATOR_COOLDOWN)
+		update_tail(delta)
+
+func update_tail(_delta: float) -> void:
+	if currentVelocity.length() > 0:
+		var velocity_factor = currentVelocity.length() / MAX_SPEED
+		velocity_factor = clampf(velocity_factor, 0.0, 1.0)
+		var offset_tail = 4.0 * velocity_factor  # Offset increases with velocity
+		tail.rotation.y = -currentVelocity.angle() + PI / 2 # Rotate to point opposite to velocity
+		tail.position.z = -offset_tail * sin(currentVelocity.angle())  # Small offset from center
+		tail.position.x = -offset_tail * cos(currentVelocity.angle())  # Small offset from center
+		tail.scale.x = lerp(.0, 2.0, velocity_factor)  # Scale based on velocity
+		tail.scale.z = lerp(.0, 5.0, velocity_factor)
+	else:
+		tail.rotation.y = 0
+		tail.position.x = 0
+		tail.position.z = 0
+		tail.scale.z = 0.0
+		tail.scale.x = 0.0
 
 
 func on_died() :
@@ -123,7 +147,8 @@ func _eat() :
 	if Input.is_action_just_pressed("eat") and playerArea:
 		print("Eating")
 		for body in playerArea.get_overlapping_bodies():
-			animationPlayer.play("eat")
+			scare.emit(PREDATOR_COOLDOWN_EATING)
+			animationPlayer.play("eat_01")
 			health +=  HEALTH_PER_EAT
 			health = clampf(health, 0, MAX_HEALTH)
 			health_value.emit(health)
@@ -142,7 +167,9 @@ func unpause() -> void:
 
 
 func _on_animation_finished(anim_name: String):
-	if anim_name == "eat":
-		animationPlayer.play("swim")
+	if anim_name == "eat_01":
+		animationPlayer.play("appear")
 		done_eating.emit()
 		set_process(true)
+	elif anim_name == "appear":
+		animationPlayer.play("swim")

@@ -19,7 +19,6 @@ var _predatorRef
 @export var alignmentWeight: float = .1
 
 @export var predatorWeight: float = 100
-@export var PREDATOR_COOLDOWN: float = 3.0
 var lastPredatorValue : float = 0
 var predator_cooldown: float = 0.0
 var _boids = []
@@ -81,6 +80,9 @@ func get_pos_outside_camera_view(dir : Vector3) -> Vector3:
 	pos.y = 0
 	return pos
 
+func on_predator_scares(value : float) -> void:
+	predator_cooldown = value
+
 func remove_instance(boid):
 	ships_eaten += 1
 	emit_signal("ship_eaten", ships_eaten)
@@ -90,16 +92,26 @@ func remove_instance(boid):
 func _process(delta):
 	_detectNeighbors()
 	_target()
-	_cohesion()
+	#_cohesion()
 	_separation()
 	_alignment()
-	#_borders(delta)
 	_escapePredator(delta)
+	too_far_from_predator()
+
+func too_far_from_predator() -> void:
+	for boid in _boids:
+		if boid.get_position().distance_to(_predatorRef.get_position()) > 200:
+			boid.set_position(get_pos_on_other_side(boid))
+			boid.target = get_pos_on_other_side(boid)
+			boid.acceleration = Vector3.ZERO
+			boid.velocity = Vector3.ZERO
+			boid.escaping = false
+
 
 func _detectNeighbors():
-	for i in range(_boids.size()):
-		_boids[i].neighbors.clear()
-		_boids[i].neighborsDistances.clear()
+	for boid in _boids:
+		boid.neighbors.clear()
+		boid.neighborsDistances.clear()
 
 	for i in range(_boids.size()):
 		for j in range(i+1, _boids.size()):
@@ -111,12 +123,12 @@ func _detectNeighbors():
 				_boids[j].neighborsDistances.append(distance)
 
 func _target():
-	for i in range(_boids.size()):
-		if _boids[i].get_position().distance_to(_boids[i].target) < 20 :
-			_boids[i].target = get_pos_on_other_side(_boids[i])
-		var direction = _boids[i].target - _boids[i].get_position()
-		_boids[i].acceleration += direction * targetWeight
-		_boids[i].acceleration.y = 0
+	for boid in _boids:
+		if boid.get_position().distance_to(boid.target) < 20 :
+			boid.target = get_pos_on_other_side(boid)
+		var direction = boid.target - boid.get_position()
+		boid.acceleration += direction * targetWeight
+		boid.acceleration.y = 0
 
 func _cohesion():
 	for i in range(_boids.size()):
@@ -169,33 +181,28 @@ func _alignment():
 
 func _escapePredator(delta):
 	predator_cooldown -= delta
-
-	# Get the player's velocity to reset the cooldown
-	var playerVelocity = abs(_predatorRef.currentVelocity)
-	if playerVelocity.length() > 0:
-		predator_cooldown = PREDATOR_COOLDOWN
-
 		# Only process predator escape if cooldown is active
-		if predator_cooldown > 0:
-			for boid in _boids:
-				var dist = boid.get_position().distance_to(_predatorRef.get_position())
+	if predator_cooldown > 0:
+		for boid in _boids:
+			var dist = boid.get_position().distance_to(_predatorRef.get_position())
 
-			# Check if the boid is within the predator's range
-				if dist < predatorMinDist:
-					# Calculate the escape direction
-					var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
+		# Check if the boid is within the predator's range
+			if dist < predatorMinDist:
+				# Calculate the escape direction
+				var dir = (boid.get_position() - _predatorRef.get_position()).normalized()
 
-					# Scale acceleration based on distance (closer = stronger acceleration)
-					var distance_factor = 1.0 - (dist / predatorMinDist) # Closer = higher factor
-					var scaled_acceleration = predatorWeight * distance_factor
-					# Apply acceleration to the boid
-					boid.acceleration += dir * scaled_acceleration
-					boid.acceleration.y = 0
+				# Scale acceleration based on distance (closer = stronger acceleration)
+				var distance_factor = 1.0 - (dist / predatorMinDist) # Closer = higher factor
+				var scaled_acceleration = predatorWeight * distance_factor
+				# Apply acceleration to the boid
+				boid.acceleration += dir * scaled_acceleration
+				boid.acceleration.y = 0
 
-					# Determine if the boid is escaping
-					boid.escaping = scaled_acceleration > escapeTreshold
-				else:
-					boid.escaping = false
+				# Determine if the boid is escaping
+				boid.escaping = scaled_acceleration > escapeTreshold
+			else:
+				boid.escaping = false
+	predator_cooldown = max(predator_cooldown, 0)
 
 
 func pause() :

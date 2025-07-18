@@ -18,8 +18,9 @@ layout_mode = 1
 offset_right = 168.0
 offset_bottom = 183.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Music/HSlider")
 theme = ExtResource("1_aakiq")
 text = "SOUND"
 
@@ -34,6 +35,8 @@ text = "MUSIC VOLUME"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/Music"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Label")
+focus_neighbor_bottom = NodePath("../../Sound Effects/HSlider")
 theme = ExtResource("1_aakiq")
 value = 20.0
 
@@ -48,6 +51,8 @@ text = "SOUND EFFECTS VOLUME"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/Sound Effects"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Music/HSlider")
+focus_neighbor_bottom = NodePath("../../Ambience/HSlider")
 theme = ExtResource("1_aakiq")
 value = 20.0
 
@@ -62,6 +67,8 @@ text = "AMBIANCE VOLUME"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/Ambience"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Sound Effects/HSlider")
+focus_neighbor_bottom = NodePath("../../Label")
 theme = ExtResource("1_aakiq")
 value = 20.0
 

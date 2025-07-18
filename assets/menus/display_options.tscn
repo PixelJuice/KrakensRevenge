@@ -15,8 +15,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../OptionButton")
 theme = ExtResource("2_kjwyb")
 text = "DISPLAY"
 
@@ -28,6 +29,8 @@ text = "RESOLUTION"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Label")
+focus_neighbor_bottom = NodePath("../Label")
 theme = ExtResource("2_kjwyb")
 theme_override_font_sizes/font_size = 24
 selected = 0

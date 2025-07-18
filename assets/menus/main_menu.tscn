@@ -12,9 +12,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_l6cm7")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -31,32 +36,38 @@ texture = ExtResource("2_ta3oe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -370.5
-offset_top = -188.295
-offset_right = 370.5
-offset_bottom = 801.705
+anchor_bottom = 1.0
+offset_left = -370.0
+offset_top = -406.0
+offset_right = 371.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/separation = 5
 alignment = 1
 
 [node name="start_button" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../exit_button")
+focus_neighbor_bottom = NodePath("../option_button")
 theme = ExtResource("3_x407y")
 text = "START"
 
 [node name="option_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../start_button")
+focus_neighbor_bottom = NodePath("../exit_button")
 theme = ExtResource("3_x407y")
 text = "OPTIONS"
 
 [node name="exit_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../option_button")
+focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_x407y")
 text = "EXIT"
 
