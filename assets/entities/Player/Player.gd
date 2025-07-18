@@ -19,7 +19,8 @@ extends Sprite3D;
 @export var MAX_BOOST : float = 100.0;
 @onready var animationPlayer = $AnimationPlayer
 @onready var playerArea = $Area3D
-@onready var tail = $tail
+@onready var shadow2 = $Shadow2
+@onready var shadow3 = $Shadow3
 var speed = 0.01
 var currentVelocity := Vector2.ZERO
 var input_direction : Vector2 = Vector2.ZERO
@@ -39,11 +40,6 @@ signal done_eating
 signal scare
 
 func _ready() -> void:
-	tail.rotation.y = 0
-	tail.position.x = 0
-	tail.position.z = 0
-	tail.scale.z = 0.0
-	tail.scale.x = 0.0
 	animationPlayer.play("hiding")
 	animationPlayer.animation_finished.connect(_on_animation_finished)
 	pause()
@@ -105,18 +101,22 @@ func update_tail(_delta: float) -> void:
 	if currentVelocity.length() > 0:
 		var velocity_factor = currentVelocity.length() / MAX_SPEED
 		velocity_factor = clampf(velocity_factor, 0.0, 1.0)
-		var offset_tail = 2.0 * velocity_factor  # Offset increases with velocity
-		tail.rotation.y = -currentVelocity.angle() + PI / 2 # Rotate to point opposite to velocity
-		tail.position.z = -offset_tail * sin(currentVelocity.angle())  # Small offset from center
-		tail.position.x = -offset_tail * cos(currentVelocity.angle())  # Small offset from center
-		tail.scale.x = lerp(.0, 10.0, velocity_factor)  # Scale based on velocity
-		tail.scale.z = lerp(.0, 8.0, velocity_factor)
+
+		var shadow_offset = 3.0 * velocity_factor
+		var shadow_pos: Vector3 = Vector3.ZERO;
+		shadow_pos.z = -shadow_offset * sin(currentVelocity.angle())
+		shadow_pos.x = -shadow_offset * cos(currentVelocity.angle())
+		shadow2.position = lerp(shadow2.position, shadow_pos, .01)
+
+		shadow_offset = 6.0 * velocity_factor
+		shadow_pos = Vector3.ZERO;
+		shadow_pos.z = -shadow_offset * sin(currentVelocity.angle())
+		shadow_pos.x = -shadow_offset * cos(currentVelocity.angle())
+		shadow3.position = lerp(shadow3.position, shadow_pos, .01)# Small offset from center # Small offset from center  # Small offset from center # Small offset from center  # Small offset from center
 	else:
-		tail.rotation.y = 0
-		tail.position.x = 0
-		tail.position.z = 0
-		tail.scale.z = 0.0
-		tail.scale.x = 0.0
+		shadow2.position = Vector3.ZERO
+		shadow3.position = Vector3.ZERO
+
 
 
 func on_died() :

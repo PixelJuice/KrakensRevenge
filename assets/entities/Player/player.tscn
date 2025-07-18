@@ -1,16 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://6rh3sbw26c63"]
+[gd_scene load_steps=34 format=3 uid="uid://6rh3sbw26c63"]
 
 [ext_resource type="Script" uid="uid://ba2jp3fom5eol" path="res://assets/entities/Player/Player.gd" id="1_1dhvd"]
-[ext_resource type="Shader" uid="uid://bb7afd4xf5dls" path="res://assets/entities/Player/kraken.gdshader" id="2_eoatv"]
-[ext_resource type="Texture2D" uid="uid://bx1t8e1w5lpqu" path="res://assets/entities/Player/textures/Kraken_shape.png" id="3_6dbxt"]
-[ext_resource type="Texture2D" uid="uid://cuiw2mwxtm1j0" path="res://assets/entities/Player/textures/Kraken_mask.png" id="3_r0s8f"]
-[ext_resource type="Texture2D" uid="uid://me1g0o1dd3wu" path="res://assets/entities/Water/Textures/Water_Normals_Colour_variation.png" id="5_cqx0g"]
-[ext_resource type="Texture2D" uid="uid://cb1yas7nwrwj8" path="res://assets/entities/Water/Textures/Water_Normals_normals_002.png" id="5_dadyc"]
-[ext_resource type="Shader" uid="uid://cbmiuh6upfbhd" path="res://assets/entities/Player/tail.gdshader" id="7_6prak"]
+[ext_resource type="Texture2D" uid="uid://cuiw2mwxtm1j0" path="res://assets/entities/Player/textures/Kraken_mask.png" id="2_6dbxt"]
 [ext_resource type="SpriteFrames" uid="uid://d01l8sd1eaor5" path="res://assets/entities/Player/player.tres" id="7_dadyc"]
 [ext_resource type="Texture2D" uid="uid://cmf7gbplv7hfi" path="res://assets/entities/Player/textures/krakie_eat.png" id="8_nhrgk"]
-[ext_resource type="Texture2D" uid="uid://bh5p0fljroier" path="res://assets/entities/Player/textures/tentacles_01.png" id="10_so6e6"]
-[ext_resource type="Texture2D" uid="uid://dtnn4ut8swpbx" path="res://assets/entities/Player/textures/tenctacles_02.png" id="11_ohbh4"]
 
 [sub_resource type="Animation" id="Animation_6prak"]
 length = 0.001
@@ -113,10 +106,22 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("tail:visible")
+tracks/8/path = NodePath("Shadow2:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shadow3:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -153,10 +158,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("tail:visible")
+tracks/2/path = NodePath("Shadow2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shadow3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -253,10 +270,22 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("tail:visible")
+tracks/7/path = NodePath("Shadow2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Shadow3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -304,10 +333,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("tail:visible")
+tracks/3/path = NodePath("Shadow2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shadow3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -344,10 +385,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("tail:visible")
+tracks/2/path = NodePath("Shadow2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shadow3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -364,68 +417,223 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1dhvd"]
-size = Vector3(11.3421, 5.253, 6.38184)
+size = Vector3(8.6055, 5.253, 8.29175)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vuj5x"]
+size = Vector2(4, 4)
+
+[sub_resource type="Shader" id="Shader_r0s8f"]
+code = "shader_type spatial;
+uniform vec3 shadow_colour : source_color;
+uniform float max_alpha : hint_range(0.0, 1., .01) = .5;
+uniform sampler2D shadow_shape;
+uniform sampler2D distortion_mask;
+uniform float distortion : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_scale : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_speed : hint_range(0.0, 1.0, .01) = .1;
+uniform sampler2D texture_normal;
+uniform sampler2D texture_normal2;
+uniform vec2 normal_direction = vec2(2.0, 0.0);
+uniform vec2 normal_direction2 = vec2(0.0, 1.0);
+
+
+varying vec3 worldUV;
+
+void vertex() {
+	worldUV = (MODEL_MATRIX*vec4(VERTEX, 1.0)).xyz;
+}
+
+void fragment() {
+	float time = TIME * .01;
+	vec2 wuv = (worldUV.xz * 0.005);
+	vec4 mask = texture(distortion_mask, UV);
+	vec3 shadow = texture(shadow_shape, UV).rgb;
+	vec3 black = vec3(0.);
+	vec3 normal1 = texture(texture_normal, (UV * distortion_scale) + (normal_direction * time * distortion_speed) + wuv).rgb;
+	vec3 normal2 = texture(texture_normal2, (UV * distortion_scale) + (normal_direction2 * time * distortion_speed) + wuv).rgb;
+	normal1 = (normal1 * 2.) - 1.;
+	normal2 = (normal2 * 2.) - 1.;
+	vec3 normal = mix(normal1, normal2, .5);
+	vec3 alpha = texture(shadow_shape, (UV + (normal.rb * mask.rb))).rgb;
+	//vec3 dist = mix(black, alpha, mask.r);
+	ALPHA = clamp(.0, max_alpha ,alpha.r);
+	ALBEDO = vec3(shadow_colour);
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r0s8f"]
+load_path = "res://.godot/imported/Kraken_mask.png-e1ec0e2dd4d003f0454faee1697fb1ef.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dadyc"]
+load_path = "res://.godot/imported/Kraken_shape.png-58d707f61332ce8a7e15f3f78a5495c3.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhrgk"]
+load_path = "res://.godot/imported/Water_Normals_normals_002.png-448b18d36dff9e1284bf6d14b814a46b.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6prak"]
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ii5kg"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_6prak")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqx0g"]
+render_priority = 0
+shader = SubResource("Shader_r0s8f")
+shader_parameter/shadow_colour = Color(0.232552, 0.112191, 0.0155402, 1)
+shader_parameter/max_alpha = 1.0
+shader_parameter/shadow_shape = SubResource("CompressedTexture2D_dadyc")
+shader_parameter/distortion_mask = SubResource("CompressedTexture2D_r0s8f")
+shader_parameter/distortion = 0.51
+shader_parameter/distortion_scale = 0.08
+shader_parameter/distortion_speed = 0.33
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_nhrgk")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_ii5kg")
+shader_parameter/normal_direction = Vector2(2.47, -2.3)
+shader_parameter/normal_direction2 = Vector2(1.195, -1.58)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bxbhd"]
 size = Vector2(4, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wbmrl"]
+[sub_resource type="Shader" id="Shader_vuj5x"]
+code = "shader_type spatial;
+uniform vec3 shadow_colour : source_color;
+uniform float max_alpha : hint_range(0.0, 1., .01) = .5;
+uniform sampler2D shadow_shape;
+uniform sampler2D distortion_mask;
+uniform float distortion : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_scale : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_speed : hint_range(0.0, 1.0, .01) = .1;
+uniform sampler2D texture_normal;
+uniform sampler2D texture_normal2;
+uniform vec2 normal_direction = vec2(2.0, 0.0);
+uniform vec2 normal_direction2 = vec2(0.0, 1.0);
+
+
+varying vec3 worldUV;
+
+void vertex() {
+	worldUV = (MODEL_MATRIX*vec4(VERTEX, 1.0)).xyz;
+}
+
+void fragment() {
+	float time = TIME * .01;
+	vec2 wuv = (worldUV.xz * 0.005);
+	vec4 mask = texture(distortion_mask, UV);
+	vec3 shadow = texture(shadow_shape, UV).rgb;
+	vec3 black = vec3(0.);
+	vec3 normal1 = texture(texture_normal, (UV * distortion_scale) + (normal_direction * time * distortion_speed) + wuv).rgb;
+	vec3 normal2 = texture(texture_normal2, (UV * distortion_scale) + (normal_direction2 * time * distortion_speed) + wuv).rgb;
+	normal1 = (normal1 * 2.) - 1.;
+	normal2 = (normal2 * 2.) - 1.;
+	vec3 normal = mix(normal1, normal2, .5);
+	vec3 alpha = texture(shadow_shape, (UV + (normal.rb * mask.rb))).rgb;
+	//vec3 dist = mix(black, alpha, mask.r);
+	ALPHA = clamp(.0, max_alpha ,alpha.r);
+	ALBEDO = vec3(shadow_colour);
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ii5kg"]
+load_path = "res://.godot/imported/Kraken_shape.png-58d707f61332ce8a7e15f3f78a5495c3.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cqx0g"]
+load_path = "res://.godot/imported/Water_Normals_Colour_variation.png-b64639726209297cf0330d62b6ca3fd5.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vuj5x"]
+frequency = 0.0139
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vuj5x"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_vuj5x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohbh4"]
 render_priority = 0
-shader = ExtResource("2_eoatv")
+shader = SubResource("Shader_vuj5x")
 shader_parameter/shadow_colour = Color(0.232552, 0.112191, 0.0155402, 1)
-shader_parameter/max_alpha = 1.0
-shader_parameter/shadow_shape = ExtResource("3_6dbxt")
-shader_parameter/distortion_mask = ExtResource("3_r0s8f")
-shader_parameter/distortion = 0.49
+shader_parameter/max_alpha = 0.95
+shader_parameter/shadow_shape = SubResource("CompressedTexture2D_ii5kg")
+shader_parameter/distortion_mask = ExtResource("2_6dbxt")
+shader_parameter/distortion = 0.35
 shader_parameter/distortion_scale = 0.08
-shader_parameter/distortion_speed = 0.33
-shader_parameter/texture_normal = ExtResource("5_cqx0g")
-shader_parameter/texture_normal2 = ExtResource("5_dadyc")
-shader_parameter/normal_direction = Vector2(2.55, -2.3)
-shader_parameter/normal_direction2 = Vector2(1.185, -1.56)
+shader_parameter/distortion_speed = 0.37
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_cqx0g")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_vuj5x")
+shader_parameter/normal_direction = Vector2(1.78, -1.305)
+shader_parameter/normal_direction2 = Vector2(1.42, -1.69)
 
-[sub_resource type="Gradient" id="Gradient_cqx0g"]
+[sub_resource type="Shader" id="Shader_wbmrl"]
+code = "shader_type spatial;
+uniform vec3 shadow_colour : source_color;
+uniform float max_alpha : hint_range(0.0, 1., .01) = .5;
+uniform sampler2D shadow_shape;
+uniform sampler2D distortion_mask;
+uniform float distortion : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_scale : hint_range(0.0, 1., .01) = .01;
+uniform float distortion_speed : hint_range(0.0, 1.0, .01) = .1;
+uniform sampler2D texture_normal;
+uniform sampler2D texture_normal2;
+uniform vec2 normal_direction = vec2(2.0, 0.0);
+uniform vec2 normal_direction2 = vec2(0.0, 1.0);
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0nfux"]
-gradient = SubResource("Gradient_cqx0g")
-fill_from = Vector2(0.517094, 1)
-fill_to = Vector2(0.5, 0)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cqx0g"]
-seed = 1
-frequency = 0.008
+varying vec3 worldUV;
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0nfux"]
+void vertex() {
+	worldUV = (MODEL_MATRIX*vec4(VERTEX, 1.0)).xyz;
+}
+
+void fragment() {
+	float time = TIME * .01;
+	vec2 wuv = (worldUV.xz * 0.005);
+	vec4 mask = texture(distortion_mask, UV);
+	vec3 shadow = texture(shadow_shape, UV).rgb;
+	vec3 black = vec3(0.);
+	vec3 normal1 = texture(texture_normal, (UV * distortion_scale) + (normal_direction * time * distortion_speed) + wuv).rgb;
+	vec3 normal2 = texture(texture_normal2, (UV * distortion_scale) + (normal_direction2 * time * distortion_speed) + wuv).rgb;
+	normal1 = (normal1 * 2.) - 1.;
+	normal2 = (normal2 * 2.) - 1.;
+	vec3 normal = mix(normal1, normal2, .5);
+	vec3 alpha = texture(shadow_shape, (UV + (normal.rb * mask.rb))).rgb;
+	//vec3 dist = mix(black, alpha, mask.r);
+	ALPHA = clamp(.0, max_alpha ,alpha.r);
+	ALBEDO = vec3(shadow_colour);
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wbmrl"]
+load_path = "res://.godot/imported/Kraken_mask.png-e1ec0e2dd4d003f0454faee1697fb1ef.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vuj5x"]
+load_path = "res://.godot/imported/Kraken_shape.png-58d707f61332ce8a7e15f3f78a5495c3.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6dbxt"]
+seed = 4
+frequency = 0.0269
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r0s8f"]
 width = 1024
 height = 1024
-noise = SubResource("FastNoiseLite_cqx0g")
+noise = SubResource("FastNoiseLite_6dbxt")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_so6e6"]
-frequency = 0.0058
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6prak"]
+load_path = "res://.godot/imported/Water_Normals_normals_002.png-448b18d36dff9e1284bf6d14b814a46b.s3tc.ctex"
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ohbh4"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_so6e6")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhrgk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ii5kg"]
 render_priority = 0
-shader = ExtResource("7_6prak")
-shader_parameter/shadow_colour = Color(0.231373, 0.113725, 0.0156863, 1)
-shader_parameter/max_alpha = 0.3
-shader_parameter/texture_shape_01 = ExtResource("10_so6e6")
-shader_parameter/texture_shape_02 = ExtResource("11_ohbh4")
-shader_parameter/texture_mask = SubResource("GradientTexture2D_0nfux")
-shader_parameter/distortion = 0.21
-shader_parameter/distortion_scale = 1.0
-shader_parameter/distortion_speed = 0.1
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_0nfux")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_ohbh4")
-shader_parameter/normal_direction = Vector2(0.145, 0.06)
-shader_parameter/normal_direction2 = Vector2(-0.13, -0.13)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_nhrgk"]
-material = SubResource("ShaderMaterial_nhrgk")
+shader = SubResource("Shader_wbmrl")
+shader_parameter/shadow_colour = Color(0.232552, 0.112191, 0.0155402, 1)
+shader_parameter/max_alpha = 0.9
+shader_parameter/shadow_shape = SubResource("CompressedTexture2D_vuj5x")
+shader_parameter/distortion_mask = SubResource("CompressedTexture2D_wbmrl")
+shader_parameter/distortion = 0.37
+shader_parameter/distortion_scale = 0.09
+shader_parameter/distortion_speed = 0.3
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_r0s8f")
+shader_parameter/texture_normal2 = SubResource("CompressedTexture2D_6prak")
+shader_parameter/normal_direction = Vector2(2.435, -2.5)
+shader_parameter/normal_direction2 = Vector2(0.945, -1.37)
 
 [node name="Player" type="Sprite3D"]
 pixel_size = 0.05
@@ -445,38 +653,31 @@ libraries = {
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18982, 1.4526, 1.07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.178481, 1.4526, -0.0311956)
 shape = SubResource("BoxShape3D_1dhvd")
 
 [node name="Shadow" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 2.555, 0, -1.50726, 0)
 sorting_offset = 111.0
-mesh = SubResource("PlaneMesh_bxbhd")
+mesh = SubResource("PlaneMesh_vuj5x")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_wbmrl")
+surface_material_override/0 = SubResource("ShaderMaterial_cqx0g")
 
 [node name="Shadow2" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 2.555, 0, -1.50726, 0)
+transform = Transform3D(1.82, 0, 0, 0, 1.82, 0, 0, 0, 1.82, 0, -1.507, 0)
 sorting_offset = 111.0
 mesh = SubResource("PlaneMesh_bxbhd")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_wbmrl")
+surface_material_override/0 = SubResource("ShaderMaterial_ohbh4")
 
 [node name="Shadow3" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(2.555, 0, 0, 0, 2.555, 0, 0, 0, 2.555, 0, -1.50726, 0)
+transform = Transform3D(1.34, 0, 0, 0, 1.34, 0, 0, 0, 1.34, 0, -1.507, 0)
 sorting_offset = 111.0
 mesh = SubResource("PlaneMesh_bxbhd")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_wbmrl")
-
-[node name="tail" type="MeshInstance3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -1.50726, 0)
-sorting_offset = 111.0
-mesh = SubResource("PlaneMesh_nhrgk")
-skeleton = NodePath("../Shadow")
+surface_material_override/0 = SubResource("ShaderMaterial_ii5kg")
 
 [node name="Eating" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -0.247525, 3.99758, -5.94217)

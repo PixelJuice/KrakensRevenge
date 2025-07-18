@@ -1,7 +1,7 @@
 extends Control
 
-@export var game_start_label: RichTextLabel
-@export var countdownLabel: RichTextLabel
+@export var game_start_label: Label
+@export var countdownLabel: Label
 @export var COUNTDOWN_TIME: float = 5.0
 var currentCountdownTime: float = 5.0
 
