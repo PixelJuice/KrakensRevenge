@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://butt2mpk67je5"]
+[gd_scene load_steps=18 format=3 uid="uid://butt2mpk67je5"]
 
 [ext_resource type="PackedScene" uid="uid://djdx5iul76lqn" path="res://assets/entities/Ships/ShipManager.tscn" id="1_7ykc4"]
 [ext_resource type="Script" uid="uid://c5tynp5w1v4gf" path="res://scenes/Game.gd" id="1_gubc5"]
 [ext_resource type="PackedScene" uid="uid://l6epy2wfm7k6" path="res://assets/entities/UI/UI.tscn" id="1_pu3yx"]
 [ext_resource type="PackedScene" uid="uid://6rh3sbw26c63" path="res://assets/entities/Player/player.tscn" id="1_pw63i"]
-[ext_resource type="PackedScene" uid="uid://cijt0delmypav" path="res://assets/entities/countdown/countdown.tscn" id="2_18nlu"]
-[ext_resource type="PackedScene" uid="uid://cv8e06rg2d2r6" path="res://camera.tscn" id="3_6wevv"]
-[ext_resource type="PackedScene" uid="uid://vbgdellinm4f" path="res://scenes/main_menu.tscn" id="6_6wevv"]
+[ext_resource type="PackedScene" uid="uid://cijt0delmypav" path="res://assets/menus/countdown/countdown.tscn" id="2_18nlu"]
+[ext_resource type="PackedScene" uid="uid://cv8e06rg2d2r6" path="res://scenes/camera.tscn" id="3_6wevv"]
+[ext_resource type="PackedScene" uid="uid://vbgdellinm4f" path="res://assets/menus/main_menu.tscn" id="6_6wevv"]
 [ext_resource type="Shader" uid="uid://bu75nkfo8wrc" path="res://scenes/LUT2D.gdshader" id="6_rt2n2"]
 [ext_resource type="Texture2D" uid="uid://jhsixvvqwbuc" path="res://scenes/lut_neutral.png" id="7_c16ls"]
-[ext_resource type="PackedScene" uid="uid://cwqj4x4845wao" path="res://assets/entities/game_over/game_over.tscn" id="8_e1cbu"]
-[ext_resource type="Script" uid="uid://db80yqh1eny8f" path="res://scenes/MusicPlayer.gd" id="11_e1cbu"]
-[ext_resource type="Script" uid="uid://dcuet2jt7xmu1" path="res://scenes/soundeffects.gd" id="12_r6p65"]
+[ext_resource type="PackedScene" uid="uid://cwqj4x4845wao" path="res://assets/menus/game_over/game_over.tscn" id="8_e1cbu"]
+[ext_resource type="PackedScene" uid="uid://c33rp5l3avfry" path="res://assets/entities/UI/Options.tscn" id="9_si52b"]
+[ext_resource type="Script" uid="uid://db80yqh1eny8f" path="res://assets/Sound/MusicPlayer.gd" id="11_e1cbu"]
+[ext_resource type="Script" uid="uid://dcuet2jt7xmu1" path="res://assets/Sound/soundeffects.gd" id="12_r6p65"]
 [ext_resource type="AudioStream" uid="uid://3csm0igq0og3" path="res://assets/Sound/beach_waves_ocean_water_soft_loop_01.wav" id="12_si52b"]
-[ext_resource type="Script" uid="uid://b8ww3wsp47wwd" path="res://scenes/Ambient.gd" id="13_01n6w"]
+[ext_resource type="Script" uid="uid://b8ww3wsp47wwd" path="res://assets/Sound/Ambient.gd" id="13_01n6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rt2n2"]
 shader = ExtResource("6_rt2n2")
@@ -57,6 +58,8 @@ COUNTDOWN_TIME = 3.0
 
 [node name="game_over" parent="." instance=ExtResource("8_e1cbu")]
 
+[node name="Options" parent="." instance=ExtResource("9_si52b")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
@@ -98,6 +101,7 @@ script = ExtResource("12_r6p65")
 [connection signal="health_value" from="Player" to="Hud2" method="_set_health_value"]
 [connection signal="max_boost" from="Player" to="Hud2" method="_set_max_boost_value"]
 [connection signal="max_health" from="Player" to="Hud2" method="_set_max_health_value"]
+[connection signal="options_button" from="main_menu" to="Options" method="show"]
 [connection signal="quit_button" from="main_menu" to="." method="quit"]
 [connection signal="start_button" from="main_menu" to="start_game" method="start"]
 [connection signal="countdown_finished" from="start_game" to="Player" method="start"]
@@ -105,3 +109,4 @@ script = ExtResource("12_r6p65")
 [connection signal="countdown_started" from="start_game" to="ShipManager" method="_start_game"]
 [connection signal="main_menu" from="game_over" to="main_menu" method="Show"]
 [connection signal="start_game" from="game_over" to="start_game" method="start"]
+[connection signal="back_button" from="Options" to="main_menu" method="Show"]

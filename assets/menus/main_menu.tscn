@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://vbgdellinm4f"]
+
+[ext_resource type="Script" uid="uid://b3naunnr3n6a8" path="res://assets/menus/start_screen.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://cmf7gbplv7hfi" path="res://assets/entities/Player/textures/krakie_eat.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://cmhasd8bpv730" path="res://assets/entities/UI/titelgrej.png" id="2_ta3oe"]
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="3_x407y"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_l6cm7")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5000.0
+offset_right = 5000.0
+offset_bottom = 6332.0
+grow_horizontal = 2
+scale = Vector2(0.11, 0.11)
+pivot_offset = Vector2(5000, 0)
+texture = ExtResource("2_ta3oe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -370.5
+offset_top = -188.295
+offset_right = 370.5
+offset_bottom = 801.705
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="start_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_x407y")
+text = "START"
+
+[node name="option_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_x407y")
+text = "OPTIONS"
+
+[node name="exit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_x407y")
+text = "EXIT"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -784.0
+offset_top = 293.0
+offset_right = 71.0
+offset_bottom = 14.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ekxnf")
+expand_mode = 4
+stretch_mode = 5
+
+[connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/option_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit_button" to="." method="_on_quit_button_pressed"]

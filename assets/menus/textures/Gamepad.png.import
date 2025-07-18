@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgem5kselplcq"
-path="res://.godot/imported/exit.png-5445342217a8703f5cf64ebb4bbdb05a.ctex"
+uid="uid://drg766av8j8ys"
+path="res://.godot/imported/Gamepad.png-554a49a2a445f5cfbece8aac6bad6950.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menus/textures/exit.png"
-dest_files=["res://.godot/imported/exit.png-5445342217a8703f5cf64ebb4bbdb05a.ctex"]
+source_file="res://assets/menus/textures/Gamepad.png"
+dest_files=["res://.godot/imported/Gamepad.png-554a49a2a445f5cfbece8aac6bad6950.ctex"]
 
 [params]
 

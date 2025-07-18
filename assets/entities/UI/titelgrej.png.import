@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dap41ceb84jdx"
-path="res://.godot/imported/start.png-416f137770a00a08c829cb08fdd7aca5.ctex"
+uid="uid://cmhasd8bpv730"
+path="res://.godot/imported/titelgrej.png-4154dca993bb6b57e964bae0a7a319f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menus/textures/start.png"
-dest_files=["res://.godot/imported/start.png-416f137770a00a08c829cb08fdd7aca5.ctex"]
+source_file="res://assets/entities/UI/titelgrej.png"
+dest_files=["res://.godot/imported/titelgrej.png-4154dca993bb6b57e964bae0a7a319f1.ctex"]
 
 [params]
 
@@ -26,9 +26,9 @@ mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=false
+process/premult_alpha=true
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=0
+process/size_limit=2048
 detect_3d/compress_to=1

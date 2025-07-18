@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://q687qgnscavi"]
+
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="1_aakiq"]
+[ext_resource type="Script" uid="uid://rb03gjdkeqf8" path="res://assets/entities/UI/SoundOptions.gd" id="1_tt1wh"]
+
+[node name="Soundoptions" type="Control" node_paths=PackedStringArray("music_volume", "effects_volume", "ambient_volume")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 179.0
+offset_bottom = 191.0
+script = ExtResource("1_tt1wh")
+music_volume = NodePath("VBoxContainer/Music/HSlider")
+effects_volume = NodePath("VBoxContainer/Sound Effects/HSlider")
+ambient_volume = NodePath("VBoxContainer/Ambience/HSlider")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 168.0
+offset_bottom = 183.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+text = "SOUND"
+
+[node name="Music" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Music"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+theme_override_font_sizes/font_size = 18
+text = "MUSIC VOLUME"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Music"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+value = 20.0
+
+[node name="Sound Effects" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Sound Effects"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+theme_override_font_sizes/font_size = 18
+text = "SOUND EFFECTS VOLUME"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Sound Effects"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+value = 20.0
+
+[node name="Ambience" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Ambience"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+theme_override_font_sizes/font_size = 18
+text = "AMBIANCE VOLUME"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Ambience"]
+layout_mode = 2
+theme = ExtResource("1_aakiq")
+value = 20.0
+
+[connection signal="value_changed" from="VBoxContainer/Music/HSlider" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Sound Effects/HSlider" to="." method="_on_Effects_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Ambience/HSlider" to="." method="_on_Ambient_value_changed"]

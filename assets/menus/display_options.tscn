@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqryq7o3fw3qk"]
+
+[ext_resource type="Script" uid="uid://dq1fulh16g34" path="res://assets/menus/display_options.gd" id="1_alkhq"]
+[ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="2_kjwyb"]
+
+[node name="Display" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 236.0
+offset_bottom = 129.0
+script = ExtResource("1_alkhq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kjwyb")
+text = "DISPLAY"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kjwyb")
+theme_override_font_sizes/font_size = 18
+text = "RESOLUTION"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kjwyb")
+theme_override_font_sizes/font_size = 24
+selected = 0
+item_count = 4
+popup/item_0/text = "1280x720"
+popup/item_0/id = 2
+popup/item_1/text = "1920x1080 "
+popup/item_1/id = 0
+popup/item_2/text = "2560x1440"
+popup/item_2/id = 1
+popup/item_3/text = "3840x2160"
+popup/item_3/id = 3
+
+[connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="set_resolution"]
