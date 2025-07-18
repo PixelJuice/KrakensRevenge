@@ -451,7 +451,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cqs1k"]
-size = Vector3(1, 2.61801, 0.420776)
+size = Vector3(1, 2.61801, 0.83371)
 
 [node name="root" type="Sprite3D"]
 sorting_offset = 100.0
@@ -459,20 +459,23 @@ script = ExtResource("1_cqs1k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-root_node = NodePath("../skrov")
+root_node = NodePath("../boat/skrov")
 libraries = {
 &"": SubResource("AnimationLibrary_ghcky")
 }
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0, 0)
 script = ExtResource("3_rerji")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(7.11, 0, 0, 0, 7.11, 0, 0, 0, 7.11, 0, 0.41392, 0.0597161)
+transform = Transform3D(7.11, 0, 0, 0, 7.11, 0, 0, 0, 7.11, 0, 0.41392, -0.0504008)
 shape = SubResource("BoxShape3D_cqs1k")
 
-[node name="skrov" type="Sprite3D" parent="."]
+[node name="boat" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="skrov" type="Sprite3D" parent="boat"]
 sorting_offset = 60.0
 cast_shadow = 0
 alpha_cut = 1
@@ -482,12 +485,12 @@ texture_filter = 5
 texture = ExtResource("8_n807k")
 region_rect = Rect2(102.085, 0, 4.875, 0)
 
-[node name="segel_litet" type="Sprite3D" parent="skrov"]
+[node name="segel_litet" type="Sprite3D" parent="boat/skrov"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.155665)
 sorting_offset = 300.0
 texture = ExtResource("3_ghp8q")
 
-[node name="segel_stort" type="Sprite3D" parent="skrov"]
+[node name="segel_stort" type="Sprite3D" parent="boat/skrov"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.235102)
 sorting_offset = 300.0
 texture = ExtResource("4_ghp8q")

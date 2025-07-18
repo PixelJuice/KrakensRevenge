@@ -4,6 +4,7 @@ class_name Boid
 
 @onready var camera = get_viewport().get_camera_3d()
 @onready var animationPlayer = $AnimationPlayer
+@onready var boat = $boat
 
 @export var minVelocity: float = 5
 @export var maxVelocity: float = 10

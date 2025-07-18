@@ -4,9 +4,11 @@ extends Sprite3D;
 @export var MAX_SPEED : float  = 0.5;
 @export var MAX_SPEED_BOOST : float = 1;
 @export var BOOST_COST : float = 10.;
-@export var ACCELERATION : float = 0.2;
-@export var BOOST_ACCELERATION : float = 20.;
-@export var DECELERATION : float = 0.05;
+@export var BOOST_COOLDOWN : float = 1.;
+@export var BOOST_RECHARGE : float = 10.;
+@export var ACCELERATION : float = 2.0;
+@export var BOOST_ACCELERATION : float = 2.;
+@export var DECELERATION : float = 1.;
 @export var BREAK : float = 0.25;
 @export var MAX_HEALTH : float = 100.0;
 @export var HEALTH_PER_EAT : float = 10.0;
@@ -18,6 +20,7 @@ extends Sprite3D;
 @onready var animationPlayer = $AnimationPlayer
 @onready var playerArea = $Area3D
 @onready var tail = $tail
+var speed = 0.01
 var currentVelocity := Vector2.ZERO
 var input_direction : Vector2 = Vector2.ZERO
 var boosted : bool = false
@@ -36,6 +39,11 @@ signal done_eating
 signal scare
 
 func _ready() -> void:
+	tail.rotation.y = 0
+	tail.position.x = 0
+	tail.position.z = 0
+	tail.scale.z = 0.0
+	tail.scale.x = 0.0
 	animationPlayer.play("hiding")
 	animationPlayer.animation_finished.connect(_on_animation_finished)
 	pause()
@@ -54,8 +62,8 @@ func start() -> void:
 	health_value.emit(health)
 
 func _process(delta: float) -> void:
-	var acceleration = _boost(delta)
 	_eat()
+	_boost(delta)
 	input_direction = Vector2(
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
@@ -65,13 +73,18 @@ func _process(delta: float) -> void:
 	if boosted:
 		current_max_speed = MAX_SPEED_BOOST
 
+	  # Default lerp factor
+	if boosted:
+		speed = clamp(speed + delta * BOOST_ACCELERATION, 0.0, 1.0)  # Smoothly increase to 1.0 when boosted
+	else:
+		speed = clamp(speed + delta * ACCELERATION, 0.0, 1.0)  # Smoothly decrease to 0.0 when not boosted
 	if input_direction != Vector2.ZERO:
 		var targetVelocity = input_direction * current_max_speed
-		var velocityChange = targetVelocity - currentVelocity
-		if velocityChange.length() > 0:
-			currentVelocity += velocityChange.normalized() * acceleration * delta
+	# Smoothly interpolate currentVelocity toward targetVelocity using lerp_factor
+		currentVelocity = currentVelocity.lerp(targetVelocity, speed)
 	else:
-		currentVelocity = currentVelocity.move_toward(Vector2.ZERO, DECELERATION * delta)
+		currentVelocity = currentVelocity.lerp(Vector2.ZERO, DECELERATION * delta)
+		speed = clamp(speed - delta * BREAK, 0.0, 1.0)  # Smoothly decrease speed when not moving
 
 	if currentVelocity.length() > 0 and input_direction != Vector2.ZERO:
 		if input_direction.dot(currentVelocity.normalized()) < -0.5:
@@ -81,6 +94,7 @@ func _process(delta: float) -> void:
 	update_health(delta, currentVelocity)
 	position.x += currentVelocity.x
 	position.z += currentVelocity.y
+	input_direction = Vector2.ZERO
 	#rotation.x = -75. * PI / 180.
 	#sorting_offset = position.z -1
 	if currentVelocity.length() > 0:
@@ -91,12 +105,12 @@ func update_tail(_delta: float) -> void:
 	if currentVelocity.length() > 0:
 		var velocity_factor = currentVelocity.length() / MAX_SPEED
 		velocity_factor = clampf(velocity_factor, 0.0, 1.0)
-		var offset_tail = 4.0 * velocity_factor  # Offset increases with velocity
+		var offset_tail = 2.0 * velocity_factor  # Offset increases with velocity
 		tail.rotation.y = -currentVelocity.angle() + PI / 2 # Rotate to point opposite to velocity
 		tail.position.z = -offset_tail * sin(currentVelocity.angle())  # Small offset from center
 		tail.position.x = -offset_tail * cos(currentVelocity.angle())  # Small offset from center
-		tail.scale.x = lerp(.0, 2.0, velocity_factor)  # Scale based on velocity
-		tail.scale.z = lerp(.0, 5.0, velocity_factor)
+		tail.scale.x = lerp(.0, 10.0, velocity_factor)  # Scale based on velocity
+		tail.scale.z = lerp(.0, 8.0, velocity_factor)
 	else:
 		tail.rotation.y = 0
 		tail.position.x = 0
@@ -114,7 +128,7 @@ func on_died() :
 func update_health(delta: float, velocity: Vector2) -> void:
 	var health_drain = HEALTH_DRAIN_WAITING
 	if velocity.length() > 0:
-		health_drain = HEALTH_DRAIN_MOVING
+		health_drain = HEALTH_DRAIN_MOVING * velocity.length() / MAX_SPEED
 
 	health -= delta * health_drain
 	health = clampf(health, 0, MAX_HEALTH)
@@ -125,23 +139,21 @@ func update_health(delta: float, velocity: Vector2) -> void:
 		on_died()
 
 
-func _boost(delta: float) -> float:
+func _boost(delta: float) -> void:
 	if Input.is_action_just_pressed("boost") && boost > BOOST_COST :
 		boosted = true
 		boost -= BOOST_COST
 		boost_value.emit(boost)
-		boost_timer = 0.5
-		return BOOST_ACCELERATION
+		boost_timer = BOOST_COOLDOWN
 	elif boosted:
 		boost_timer -= delta
 		if boost_timer <= 0:
 			boosted = false
 			boost_timer = 0.0
 	else :
-		boost += 20 * delta
-		boost = clampf(boost, 0, 100)
+		boost += BOOST_RECHARGE * delta
+		boost = clampf(boost, 0, MAX_BOOST)
 		boost_value.emit(boost)
-	return ACCELERATION
 
 func _eat() :
 	if Input.is_action_just_pressed("eat") and playerArea:

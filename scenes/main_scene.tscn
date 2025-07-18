@@ -30,7 +30,7 @@ script = ExtResource("1_gubc5")
 [node name="Hud2" parent="." instance=ExtResource("1_pu3yx")]
 
 [node name="ShipManager" parent="." instance=ExtResource("1_7ykc4")]
-numberOfBoids = 50
+numberOfBoids = 10
 predator = NodePath("../Player")
 predatorMinDist = 90.0
 escapeTreshold = 30
@@ -43,7 +43,12 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
 cast_shadow = 0
-DECELERATION = 0.07
+MAX_SPEED = 0.2
+MAX_SPEED_BOOST = 0.45
+BOOST_COOLDOWN = 0.5
+ACCELERATION = 0.04
+BOOST_ACCELERATION = 0.01
+DECELERATION = 0.205
 HEALTH_DRAIN_MOVING = 5.0
 HEALTH_DRAIN_WAITING = 0.5
 
