@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 	else:
 		currentVelocity = currentVelocity.lerp(Vector2.ZERO, DECELERATION * delta)
 		speed = clamp(speed - delta * BREAK, 0.0, 1.0)  # Smoothly decrease speed when not moving
-	print("speed", speed)
+
 	if currentVelocity.length() > 0 and input_direction != Vector2.ZERO:
 		if input_direction.dot(currentVelocity.normalized()) < -0.5:
 			currentVelocity = currentVelocity.move_toward(Vector2.ZERO, BREAK * delta)
