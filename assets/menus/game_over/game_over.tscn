@@ -48,12 +48,16 @@ _data = {
 
 [node name="game_over" type="Control" node_paths=PackedStringArray("score_label", "highscore_label")]
 layout_mode = 3
-anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_052av")
 score_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer/Score")
-highscore_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/Highscore")
+highscore_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer2/Highscore")
 
 [node name="HBoxContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
@@ -131,7 +135,7 @@ texture = ExtResource("3_selrs")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control"]
 layout_mode = 2
-theme_override_constants/separation = 255
+theme_override_constants/separation = 205
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control/VBoxContainer"]
@@ -140,7 +144,7 @@ theme_override_constants/separation = 135
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 45
+theme_override_constants/margin_top = 25
 
 [node name="Score" type="Label" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -148,7 +152,11 @@ theme = ExtResource("2_tbegy")
 text = "SCORE : 99999"
 horizontal_alignment = 1
 
-[node name="Highscore" type="Label" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Highscore" type="Label" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme = ExtResource("2_tbegy")
 text = "NEW HIGHSCORE: 99999"
@@ -156,20 +164,29 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Control/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 135
+theme_override_constants/separation = 100
 
-[node name="restart" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 65
+
+[node name="restart" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../Menu")
-focus_neighbor_bottom = NodePath("../Menu")
+focus_neighbor_top = NodePath("../../MarginContainer/Menu")
+focus_neighbor_bottom = NodePath("../../MarginContainer/Menu")
 theme = ExtResource("2_tbegy")
+theme_override_font_sizes/font_size = 54
 text = "ANOTHER BITE?"
 
-[node name="Menu" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../restart")
-focus_neighbor_bottom = NodePath("../restart")
+theme_override_constants/margin_top = 0
+
+[node name="Menu" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../MarginContainer2/restart")
+focus_neighbor_bottom = NodePath("../../MarginContainer2/restart")
 theme = ExtResource("2_tbegy")
 text = "MAIN MENU"
 
@@ -179,5 +196,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_8ruxy")
 }
 
-[connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/VBoxContainer2/restart" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/VBoxContainer2/Menu" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/VBoxContainer2/MarginContainer2/restart" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/VBoxContainer/VBoxContainer2/MarginContainer/Menu" to="." method="_on_menu_button_pressed"]

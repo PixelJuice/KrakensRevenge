@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bl6r8jcm30cs2" path="res://assets/menus/countdown/countdown.gd" id="1_6pbb6"]
 [ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="2_7ee48"]
-[ext_resource type="Texture2D" uid="uid://du5x0tunraqta" path="res://assets/menus/textures/knappar/knappmellan_2.png" id="2_up8is"]
+[ext_resource type="Texture2D" uid="uid://djda061fltxy8" path="res://assets/entities/UI/knappcounter.png" id="2_up8is"]
 
 [node name="start_game" type="Control" node_paths=PackedStringArray("game_start_label", "countdownLabel")]
 layout_mode = 3
@@ -28,9 +28,9 @@ color = Color(0.0588235, 0.0588235, 0.0588235, 0.364706)
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 655.0
-offset_top = 409.0
+offset_top = 420.0
 offset_right = 1679.0
-offset_bottom = 857.0
+offset_bottom = 868.0
 scale = Vector2(0.56, 0.56)
 texture = ExtResource("2_up8is")
 

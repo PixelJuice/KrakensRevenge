@@ -25,6 +25,7 @@ var neighborsDistances := []
 var timeOutOfBorders := 0.0
 var target := Vector3.ZERO
 var escaping = false
+var outside_view := false
 
 var manager
 
@@ -44,9 +45,9 @@ func _process(delta):
 	acceleration.x = 0
 	acceleration.y = 0
 	acceleration.z = 0
-
-	position.x += velocity.x * delta
-	position.z += velocity.z * delta
+	var hyperspeed : float = 10.0 if outside_view else 1.0
+	position.x += (velocity.x * delta) * hyperspeed
+	position.z += (velocity.z * delta) * hyperspeed
 	sorting_offset = position.z -1
 	updateAnimation()
 	position.y = 1.9
