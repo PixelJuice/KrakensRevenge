@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://l6epy2wfm7k6"]
+[gd_scene load_steps=13 format=3 uid="uid://l6epy2wfm7k6"]
 
 [ext_resource type="Script" uid="uid://b3cu2dwpsaakk" path="res://assets/entities/UI/UI.gd" id="1_pitpu"]
 [ext_resource type="Script" uid="uid://g0dop31ykpxt" path="res://assets/entities/UI/Health.gd" id="2_dupts"]
@@ -6,28 +6,26 @@
 [ext_resource type="Script" uid="uid://bo2r4fcsm7ugr" path="res://assets/entities/UI/score.gd" id="2_s5teh"]
 [ext_resource type="Texture2D" uid="uid://damh47sr5ll1c" path="res://assets/menus/textures/knappar/knappmellan_3.png" id="2_vh3ck"]
 [ext_resource type="Script" uid="uid://jo03bgcaugqp" path="res://assets/entities/UI/Boost.gd" id="3_la5a8"]
-[ext_resource type="Texture2D" uid="uid://bb5yaor1gneby" path="res://assets/menus/textures/meter.png" id="4_3w02a"]
-[ext_resource type="Texture2D" uid="uid://cifdaybcdx6bg" path="res://assets/menus/textures/knappar/knappliten_2.png" id="5_wxnjl"]
-[ext_resource type="Texture2D" uid="uid://cmf7gbplv7hfi" path="res://assets/entities/Player/textures/krakie_eat.png" id="9_5mbuv"]
-
-[sub_resource type="Gradient" id="Gradient_ipfip"]
-colors = PackedColorArray(0.815598, 0.307934, 0.216121, 1, 0.847059, 0.329412, 0.235294, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3w02a"]
-gradient = SubResource("Gradient_ipfip")
-width = 819
-height = 274
+[ext_resource type="Texture2D" uid="uid://n3ucs44he1j1" path="res://assets/entities/UI/healthspeedbars.png" id="6_h43ob"]
 
 [sub_resource type="Gradient" id="Gradient_pitpu"]
-colors = PackedColorArray(0.884615, 0.700754, 0.37813, 1, 1, 0.792157, 0.427451, 1)
+colors = PackedColorArray(1, 0.847059, 0.34902, 1, 1, 0.847059, 0.34902, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dupts"]
 gradient = SubResource("Gradient_pitpu")
-width = 819
-height = 274
+width = 624
+height = 83
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_la5a8"]
 diffuse_texture = SubResource("GradientTexture2D_dupts")
+
+[sub_resource type="Gradient" id="Gradient_ipfip"]
+colors = PackedColorArray(0.847059, 0.329412, 0.235294, 1, 0.847059, 0.329412, 0.235294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3w02a"]
+gradient = SubResource("Gradient_ipfip")
+width = 624
+height = 79
 
 [node name="Control" type="MarginContainer" node_paths=PackedStringArray("boost", "health", "score")]
 anchors_preset = 15
@@ -43,13 +41,21 @@ score = NodePath("Control/Score")
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 25.0
+offset_right = 314.0
+offset_bottom = 91.0
+color = Color(0, 0, 0, 1)
+
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = 1496.0
-offset_top = 5.0
-offset_right = 2520.0
-offset_bottom = 528.0
-scale = Vector2(0.4, 0.4)
+offset_left = 131.0
+offset_top = 94.0
+offset_right = 1155.0
+offset_bottom = 617.0
+scale = Vector2(0.159999, 0.159999)
 texture = ExtResource("2_vh3ck")
 
 [node name="Score" type="Label" parent="Control"]
@@ -58,49 +64,38 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -360.0
-offset_top = 58.0
-offset_right = -67.0
-offset_bottom = 143.0
+offset_left = -1764.0
+offset_top = 116.0
+offset_right = -1471.0
+offset_bottom = 201.0
 grow_horizontal = 0
+scale = Vector2(0.399998, 0.399998)
 theme = ExtResource("2_ipfip")
 text = "Score: 00000"
 script = ExtResource("2_s5teh")
 
 [node name="Vertical" type="VBoxContainer" parent="Control"]
 layout_mode = 1
-offset_left = 68.0
+offset_left = 8.0
 offset_top = 8.0
-offset_right = 2492.0
-offset_bottom = 1636.0
-scale = Vector2(0.195, 0.195)
+offset_right = 1032.0
+offset_bottom = 602.0
+scale = Vector2(0.33, 0.33)
 theme = ExtResource("2_ipfip")
 theme_override_constants/separation = -115
-
-[node name="Health_Bar" type="TextureProgressBar" parent="Control/Vertical"]
-layout_mode = 2
-value = 100.0
-texture_under = ExtResource("5_wxnjl")
-texture_over = ExtResource("4_3w02a")
-texture_progress = SubResource("GradientTexture2D_3w02a")
-texture_progress_offset = Vector2(117.12, 126.705)
-script = ExtResource("2_dupts")
 
 [node name="Boost_Bar" type="TextureProgressBar" parent="Control/Vertical"]
 layout_mode = 2
 value = 100.0
-texture_under = ExtResource("5_wxnjl")
-texture_over = ExtResource("4_3w02a")
 texture_progress = SubResource("CanvasTexture_la5a8")
-texture_progress_offset = Vector2(110.72, 126.77)
+texture_progress_offset = Vector2(291, 164)
 script = ExtResource("3_la5a8")
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = -13.0
-offset_top = 4.0
-offset_right = 1486.0
-offset_bottom = 2028.0
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_5mbuv")
-flip_h = true
+[node name="Health_Bar" type="TextureProgressBar" parent="Control/Vertical"]
+layout_mode = 2
+value = 100.0
+texture_over = ExtResource("6_h43ob")
+texture_progress = SubResource("GradientTexture2D_3w02a")
+texture_progress_offset = Vector2(292, 108)
+tint_under = Color(0, 0, 0, 1)
+script = ExtResource("2_dupts")
