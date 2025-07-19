@@ -13,7 +13,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rlhhw"]
 render_priority = 0
 shader = ExtResource("1_yrjw4")
-shader_parameter/glitter_colour = Color(0.743615, 0.903694, 0.970181, 1)
+shader_parameter/glitter_colour = Color(0.498131, 1, 0.607879, 1)
 shader_parameter/glitter_alpha = 0.7
 shader_parameter/glitter1_size = 5.5
 shader_parameter/glitter2_size = 10.0
@@ -29,9 +29,9 @@ shader_parameter/glitter_mask2 = ExtResource("5_esw8g")
 shader_parameter/masking_mix = 0.5
 shader_parameter/glitter_1 = ExtResource("4_jatuc")
 shader_parameter/glitter_2 = ExtResource("5_vk4rq")
-shader_parameter/light_colour = Color(0.171166, 0.469758, 0.456587, 1)
-shader_parameter/dark_colour = Color(0.0823529, 0.27451, 0.345098, 1)
-shader_parameter/darkness_colour = Color(0.00771613, 0.0618554, 0.0359351, 1)
+shader_parameter/light_colour = Color(0.0648, 0.18, 0.13968, 1)
+shader_parameter/dark_colour = Color(0, 0.29, 0.2175, 1)
+shader_parameter/darkness_colour = Color(0.2205, 0.45, 0.308475, 1)
 shader_parameter/depth = 0.2
 shader_parameter/distortion = 0.2
 shader_parameter/distortion_bottom = 0.1
