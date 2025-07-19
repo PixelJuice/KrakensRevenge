@@ -64,6 +64,7 @@ func _process(delta: float) -> void:
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_up", "move_down")
 	)
+	print("Input direction: ", input_direction)
 
 	var current_max_speed = MAX_SPEED
 	if boosted:
@@ -71,12 +72,12 @@ func _process(delta: float) -> void:
 
 	  # Default lerp factor
 	if boosted:
-		speed = clamp(speed + delta * BOOST_ACCELERATION, 0.0, 1.0)  # Smoothly increase to 1.0 when boosted
+		speed = clamp(speed + delta * BOOST_ACCELERATION, 0.0, 1.0)  # Accelerate faster when boosted
 	else:
-		speed = clamp(speed + delta * ACCELERATION, 0.0, 1.0)  # Smoothly decrease to 0.0 when not boosted
+		speed = clamp(speed + delta * ACCELERATION, 0.0, 0.1) 
+		
 	if input_direction != Vector2.ZERO:
 		var targetVelocity = input_direction * current_max_speed
-	# Smoothly interpolate currentVelocity toward targetVelocity using lerp_factor
 		currentVelocity = currentVelocity.lerp(targetVelocity, speed)
 	else:
 		currentVelocity = currentVelocity.lerp(Vector2.ZERO, DECELERATION * delta)
@@ -93,9 +94,9 @@ func _process(delta: float) -> void:
 	input_direction = Vector2.ZERO
 	#rotation.x = -75. * PI / 180.
 	#sorting_offset = position.z -1
-	if currentVelocity.length() > 0:
+	if currentVelocity.length() > .1:
 		scare.emit(PREDATOR_COOLDOWN)
-		update_tail(delta)
+	update_tail(delta)
 
 func update_tail(_delta: float) -> void:
 	if currentVelocity.length() > 0:

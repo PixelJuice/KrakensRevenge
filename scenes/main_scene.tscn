@@ -43,12 +43,15 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
 cast_shadow = 0
-MAX_SPEED = 0.2
-MAX_SPEED_BOOST = 0.45
-BOOST_COOLDOWN = 0.5
+MAX_SPEED = 0.15
+MAX_SPEED_BOOST = 0.5
+BOOST_COST = 25.0
+BOOST_COOLDOWN = 0.3
+BOOST_RECHARGE = 20.0
 ACCELERATION = 0.04
-BOOST_ACCELERATION = 0.01
+BOOST_ACCELERATION = 0.06
 DECELERATION = 0.205
+BREAK = 0.1
 HEALTH_PER_EAT = 15.0
 HEALTH_DRAIN_MOVING = 0.0
 

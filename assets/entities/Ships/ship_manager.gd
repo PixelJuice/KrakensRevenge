@@ -100,12 +100,18 @@ func _process(delta):
 
 func too_far_from_predator() -> void:
 	for boid in _boids:
-		if boid.get_position().distance_to(_predatorRef.get_position()) > 200:
-			boid.set_position(get_pos_on_other_side(boid))
+		var dist = boid.get_position().distance_to(_predatorRef.get_position())
+		if dist > 250:
+			boid.set_position(get_pos_outside_camera_view(get_random_direction()))
 			boid.target = get_pos_on_other_side(boid)
 			boid.acceleration = Vector3.ZERO
 			boid.velocity = Vector3.ZERO
 			boid.escaping = false
+		elif dist > 130	:
+			boid.outside_view = true
+			boid.target = get_pos_on_other_side(boid)
+		else:
+			boid.outside_view = false
 
 
 func _detectNeighbors():

@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://bhsx3l6jd6gbv" path="res://assets/entities/UI/options_scene.gd" id="1_wggcf"]
 [ext_resource type="Texture2D" uid="uid://bv2qwq63cfcya" path="res://assets/menus/textures/knappar/knappliten_3.png" id="2_72wpo"]
 [ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="2_787gu"]
-[ext_resource type="Texture2D" uid="uid://dv4er3ssj5plf" path="res://assets/menus/textures/knappar/knappstor_1.png" id="2_cuslg"]
 [ext_resource type="PackedScene" uid="uid://dqryq7o3fw3qk" path="res://assets/menus/display_options.tscn" id="3_g2swm"]
 [ext_resource type="Texture2D" uid="uid://drg766av8j8ys" path="res://assets/menus/textures/Gamepad.png" id="4_13dmm"]
+[ext_resource type="Texture2D" uid="uid://dtrkpv2gucm3l" path="res://assets/entities/UI/knappsoundmenu.png" id="4_72wpo"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -40,12 +40,12 @@ text = "BACK"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 319.0
-offset_top = 295.0
-offset_right = 1343.0
-offset_bottom = 676.0
+offset_left = 310.0
+offset_top = 306.0
+offset_right = 1402.0
+offset_bottom = 687.0
 scale = Vector2(1.185, 1.185)
-texture = ExtResource("2_cuslg")
+texture = ExtResource("4_72wpo")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
