@@ -127,6 +127,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Face:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Face:sorting_offset")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_cqx0g"]
 resource_name = "appear"
@@ -182,7 +206,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_dadyc"]
 resource_name = "eat_01"
-length = 2.0
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -238,10 +262,10 @@ tracks/4/path = NodePath("Eating:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.5, 2),
+"times": PackedFloat32Array(0, 1.6, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.248, -11.482, 9.898)]
+"values": [Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.247525, 3.99758, -5.94217), Vector3(-0.248, -5.102, 4.498)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -262,10 +286,10 @@ tracks/6/path = NodePath("Face:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.866667, 1.56667, 2),
+"times": PackedFloat32Array(0, 0.466667, 0.866667, 1.56667, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1.31951, 1),
 "update": 0,
-"values": [Vector3(4.11, -2.274, 10.995), Vector3(4.11, 0.573, 7.388), Vector3(4.11024, 1.49771, 5.38048), Vector3(4.11048, 2.49896, 3.33922), Vector3(4.11, -13.281, 16.864)]
+"values": [Vector3(4.11, -0.42, 11.03), Vector3(4.11, 0.573, 7.388), Vector3(4.11024, 1.49771, 5.38048), Vector3(4.11, 1.629, 4.539), Vector3(4.11, -13.281, 16.864)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -290,6 +314,30 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Face:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, 2, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Face:sorting_offset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_ii5kg"]
@@ -686,8 +734,11 @@ alpha_cut = 1
 sprite_frames = ExtResource("7_dadyc")
 
 [node name="Face" type="Sprite3D" parent="."]
-transform = Transform3D(0.695, 0, 0, 0, 0.179879, 0.671318, 0, -0.671318, 0.179879, 4.11048, 2.49896, 3.33922)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 4.11048, 2.49896, 3.33922)
 visible = false
 cast_shadow = 0
 alpha_cut = 2
 texture = ExtResource("8_nhrgk")
+
+[node name="water" parent="." instance_placeholder="res://assets/entities/Water/waterv2.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.335, 0)
