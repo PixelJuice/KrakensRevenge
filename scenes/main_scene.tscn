@@ -30,10 +30,11 @@ script = ExtResource("1_gubc5")
 [node name="Hud2" parent="." instance=ExtResource("1_pu3yx")]
 
 [node name="ShipManager" parent="." instance=ExtResource("1_7ykc4")]
-numberOfBoids = 15
+numberOfBoids = 12
 predator = NodePath("../Player")
-predatorMinDist = 54.025
+predatorMinDist = 71.35
 escapeTreshold = 110
+difficulty_increase = 2.0
 predatorWeight = 500.0
 
 [node name="camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_6wevv")]
@@ -43,30 +44,18 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
 cast_shadow = 0
-MAX_SPEED = 0.3
+MAX_SPEED = 0.655
+MAX_SPEED_BOOST = 1.045
 BOOST_COST = 25.0
 BOOST_COOLDOWN = 0.3
 BOOST_RECHARGE = 20.0
 ACCELERATION = 20.0
-BOOST_ACCELERATION = 40.0
+BOOST_ACCELERATION = 25.0
 DECELERATION = 0.205
-BREAK = 0.1
+BREAK = 0.155
 HEALTH_PER_EAT = 15.0
-HEALTH_DRAIN_MOVING = 0.0
-
-[node name="Player2" parent="." instance=ExtResource("1_pw63i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
-cast_shadow = 0
-MAX_SPEED = 0.3
-BOOST_COST = 25.0
-BOOST_COOLDOWN = 0.3
-BOOST_RECHARGE = 20.0
-ACCELERATION = 20.0
-BOOST_ACCELERATION = 40.0
-DECELERATION = 0.205
-BREAK = 0.1
-HEALTH_PER_EAT = 15.0
-HEALTH_DRAIN_MOVING = 0.0
+HEALTH_DRAIN_MOVING = 3.0
+HEALTH_DRAIN_WAITING = 1.5
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 93.8749)
@@ -123,19 +112,6 @@ script = ExtResource("12_r6p65")
 [connection signal="max_boost" from="Player" to="Hud2" method="_set_max_boost_value"]
 [connection signal="max_health" from="Player" to="Hud2" method="_set_max_health_value"]
 [connection signal="scare" from="Player" to="ShipManager" method="on_predator_scares"]
-[connection signal="boost_value" from="Player2" to="Hud2" method="_set_boost_value"]
-[connection signal="died" from="Player2" to="." method="on_died"]
-[connection signal="died" from="Player2" to="Hud2" method="hide_hud"]
-[connection signal="died" from="Player2" to="ShipManager" method="player_died"]
-[connection signal="died" from="Player2" to="game_over" method="Show"]
-[connection signal="died" from="Player2" to="Music" method="play_died"]
-[connection signal="done_eating" from="Player2" to="camera" method="zoom_out"]
-[connection signal="eating" from="Player2" to="camera" method="zoom_in"]
-[connection signal="eating" from="Player2" to="AudioStreamPlayer" method="on_eating"]
-[connection signal="health_value" from="Player2" to="Hud2" method="_set_health_value"]
-[connection signal="max_boost" from="Player2" to="Hud2" method="_set_max_boost_value"]
-[connection signal="max_health" from="Player2" to="Hud2" method="_set_max_health_value"]
-[connection signal="scare" from="Player2" to="ShipManager" method="on_predator_scares"]
 [connection signal="options_button" from="main_menu" to="Options" method="Show"]
 [connection signal="quit_button" from="main_menu" to="." method="quit"]
 [connection signal="start_button" from="main_menu" to="start_game" method="start"]

@@ -70,10 +70,10 @@ func _physics_process(delta: float) -> void:
 		current_max_speed = MAX_SPEED_BOOST
 
 	if boosted:
-		speed = clamp(speed + delta * BOOST_ACCELERATION, 0.0, 100.)  # Accelerate faster when boosted
+		speed = clamp(speed + delta * BOOST_ACCELERATION, 0.0, 1.)  # Accelerate faster when boosted
 	else:
-		speed = clamp(speed + delta * ACCELERATION, 0.0, 100) 
-		
+		speed = clamp(speed + delta * ACCELERATION, 0.0, 1.)
+
 	if input_direction != Vector2.ZERO:
 		var targetVelocity = input_direction * current_max_speed
 		currentVelocity = currentVelocity.lerp(targetVelocity, speed * delta)  # Smoothly interpolate towards target velocity
@@ -82,10 +82,6 @@ func _physics_process(delta: float) -> void:
 		currentVelocity = currentVelocity.lerp(Vector2.ZERO, DECELERATION * delta)
 		speed = clamp(speed - delta * BREAK, 0.0, 1.0)  # Smoothly decrease speed when not moving
 
-	if currentVelocity.length() > 0 and input_direction != Vector2.ZERO:
-		if input_direction.dot(currentVelocity.normalized()) < -0.5:
-			currentVelocity = currentVelocity.move_toward(Vector2.ZERO, BREAK * delta)
-			#print("break", currentVelocity)
 
 	update_health(delta, currentVelocity)
 	position.x += currentVelocity.x
@@ -127,7 +123,7 @@ func on_died() :
 
 func update_health(delta: float, velocity: Vector2) -> void:
 	var health_drain = HEALTH_DRAIN_WAITING
-	if velocity.length() > 0:
+	if velocity.length() > .2:
 		health_drain = HEALTH_DRAIN_MOVING * velocity.length() / MAX_SPEED
 
 	health -= delta * health_drain

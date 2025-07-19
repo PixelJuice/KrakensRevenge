@@ -13,10 +13,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -12.0
-offset_right = -11.0
-offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -43,31 +39,28 @@ texture = ExtResource("2_ta3oe")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 2
-offset_left = 810.0
+offset_left = 786.0
 offset_top = 514.0
-offset_right = 1140.0
+offset_right = 1116.0
 offset_bottom = 702.525
-scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_2elac")
 expand_mode = 5
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 layout_mode = 2
-offset_left = 820.0
-offset_top = 665.0
-offset_right = 1170.0
-offset_bottom = 853.525
-scale = Vector2(0.7, 0.7)
+offset_left = 788.0
+offset_top = 684.0
+offset_right = 1118.0
+offset_bottom = 872.525
 texture = ExtResource("4_oaiin")
 expand_mode = 5
 
 [node name="TextureRect5" type="TextureRect" parent="."]
 layout_mode = 2
-offset_left = 825.0
-offset_top = 795.0
-offset_right = 1175.0
-offset_bottom = 983.53
-scale = Vector2(0.7, 0.7)
+offset_left = 799.0
+offset_top = 852.0
+offset_right = 1129.0
+offset_bottom = 1040.53
 texture = ExtResource("5_x2l61")
 expand_mode = 5
 
@@ -78,13 +71,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -385.0
-offset_top = -805.0
-offset_right = 352.59
-offset_bottom = 105.575
+offset_left = -368.0
+offset_top = -752.0
+offset_right = 369.59
+offset_bottom = 158.575
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 65
+theme_override_constants/separation = 85
 alignment = 1
 
 [node name="start_button" type="Button" parent="VBoxContainer"]
@@ -93,7 +86,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../exit_button")
 focus_neighbor_bottom = NodePath("../option_button")
 theme = ExtResource("3_x407y")
-theme_override_font_sizes/font_size = 50
 text = "START"
 
 [node name="option_button" type="Button" parent="VBoxContainer"]
@@ -101,7 +93,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../start_button")
 focus_neighbor_bottom = NodePath("../exit_button")
 theme = ExtResource("3_x407y")
-theme_override_font_sizes/font_size = 50
 text = "OPTIONS"
 
 [node name="exit_button" type="Button" parent="VBoxContainer"]
@@ -109,7 +100,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../option_button")
 focus_neighbor_bottom = NodePath("../start_button")
 theme = ExtResource("3_x407y")
-theme_override_font_sizes/font_size = 50
 text = "EXIT"
 
 [node name="TextureRect" type="TextureRect" parent="."]
