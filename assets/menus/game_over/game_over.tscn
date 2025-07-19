@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwqj4x4845wao"]
+[gd_scene load_steps=12 format=3 uid="uid://cwqj4x4845wao"]
 
 [ext_resource type="Script" uid="uid://f8s1byeuqkfk" path="res://assets/menus/game_over/game_over.gd" id="1_052av"]
-[ext_resource type="Texture2D" uid="uid://damh47sr5ll1c" path="res://assets/menus/textures/knappar/knappmellan_3.png" id="2_d0rqd"]
 [ext_resource type="Texture2D" uid="uid://c52yh4fkmaq8d" path="res://assets/entities/UI/gameover.png" id="2_jq0ft"]
 [ext_resource type="Theme" uid="uid://lp3hkt7prfqi" path="res://assets/entities/UI/resources/UITheme.tres" id="2_tbegy"]
-[ext_resource type="Texture2D" uid="uid://bv2qwq63cfcya" path="res://assets/menus/textures/knappar/knappliten_3.png" id="3_3kpgr"]
+[ext_resource type="Texture2D" uid="uid://dfbdb4ffoqj5v" path="res://assets/menus/textures/knappar/knappstor_2.png" id="3_d8nqo"]
 [ext_resource type="Texture2D" uid="uid://cifdaybcdx6bg" path="res://assets/menus/textures/knappar/knappliten_2.png" id="3_selrs"]
+[ext_resource type="Texture2D" uid="uid://bno446oqw3ql1" path="res://assets/menus/textures/knappar/knappstor_3.png" id="4_8ruxy"]
+[ext_resource type="Texture2D" uid="uid://cmvtnh6xsnhh2" path="res://assets/menus/textures/knappar/knappmellan_1.png" id="5_8ruxy"]
+[ext_resource type="Texture2D" uid="uid://du5x0tunraqta" path="res://assets/menus/textures/knappar/knappmellan_2.png" id="5_d8nqo"]
 
 [sub_resource type="Animation" id="Animation_d8nqo"]
 length = 0.001
@@ -50,7 +52,7 @@ anchors_preset = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_052av")
-score_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/Score")
+score_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer/Score")
 highscore_label = NodePath("HBoxContainer/Control/VBoxContainer/VBoxContainer/Highscore")
 
 [node name="HBoxContainer" type="HSplitContainer" parent="."]
@@ -75,27 +77,52 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control"]
+[node name="backgrounds" type="VBoxContainer" parent="HBoxContainer/Control"]
 layout_mode = 2
+theme_override_constants/separation = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control/backgrounds"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1.185, 362.305)
-layout_mode = 2
-texture = ExtResource("3_3kpgr")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 358.705)
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Control/backgrounds/VBoxContainer"]
+custom_minimum_size = Vector2(500, 240)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_d0rqd")
+texture = ExtResource("3_d8nqo")
 expand_mode = 3
-stretch_mode = 4
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Control/backgrounds/VBoxContainer"]
+custom_minimum_size = Vector2(500, 260)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_8ruxy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Control/backgrounds"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Control/backgrounds/VBoxContainer2"]
+custom_minimum_size = Vector2(2.295, 195.28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_8ruxy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Control/backgrounds/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 185.425)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_d8nqo")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="feast" type="TextureRect" parent="HBoxContainer/Control"]
 visible = false
@@ -104,14 +131,18 @@ texture = ExtResource("3_selrs")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control"]
 layout_mode = 2
-theme_override_constants/separation = 225
+theme_override_constants/separation = 255
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Control/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 135
 
-[node name="Score" type="Label" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 45
+
+[node name="Score" type="Label" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("2_tbegy")
 text = "SCORE : 99999"
@@ -125,7 +156,7 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/Control/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 135
 
 [node name="restart" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
@@ -133,7 +164,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../Menu")
 focus_neighbor_bottom = NodePath("../Menu")
 theme = ExtResource("2_tbegy")
-text = "FEAST AGAIN?"
+text = "ANOTHER BITE?"
 
 [node name="Menu" type="Button" parent="HBoxContainer/Control/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
