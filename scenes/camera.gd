@@ -16,12 +16,12 @@ func _ready():
 	if player:
 		initial_offset = global_transform.origin - player.global_transform.origin
 
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player:
 		var target_position = player.global_transform.origin + initial_offset
 		# Only update X and Z; keep Y unchanged
-		global_transform.origin.x = target_position.x
-		global_transform.origin.z = target_position.z
+		global_transform.origin.x = lerp(global_transform.origin.x, target_position.x, .8)
+		global_transform.origin.z = lerp(global_transform.origin.z, target_position.z, .8)
 
 
 func zoom_in():

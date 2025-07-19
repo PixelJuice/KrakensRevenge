@@ -36,7 +36,7 @@ func set_values():
 	maxAcceleration = randf_range(minAcceleration, maxAcceleration)
 	rotation.x = -75. * PI / 180.
 
-func _process(delta):
+func _physics_process(delta):
 	velocity += acceleration.limit_length(maxAcceleration * delta)
 	if escaping :
 		velocity = velocity.limit_length(maxEscapeVelocity)

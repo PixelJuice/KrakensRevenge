@@ -739,6 +739,3 @@ visible = false
 cast_shadow = 0
 alpha_cut = 2
 texture = ExtResource("8_nhrgk")
-
-[node name="water" parent="." instance_placeholder="res://assets/entities/Water/waterv2.tscn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.335, 0)

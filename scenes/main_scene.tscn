@@ -43,11 +43,26 @@ player = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource("1_pw63i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
 cast_shadow = 0
+MAX_SPEED = 0.3
 BOOST_COST = 25.0
 BOOST_COOLDOWN = 0.3
 BOOST_RECHARGE = 20.0
-ACCELERATION = 40.0
-BOOST_ACCELERATION = 80.0
+ACCELERATION = 20.0
+BOOST_ACCELERATION = 40.0
+DECELERATION = 0.205
+BREAK = 0.1
+HEALTH_PER_EAT = 15.0
+HEALTH_DRAIN_MOVING = 0.0
+
+[node name="Player2" parent="." instance=ExtResource("1_pw63i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.38176, 0)
+cast_shadow = 0
+MAX_SPEED = 0.3
+BOOST_COST = 25.0
+BOOST_COOLDOWN = 0.3
+BOOST_RECHARGE = 20.0
+ACCELERATION = 20.0
+BOOST_ACCELERATION = 40.0
 DECELERATION = 0.205
 BREAK = 0.1
 HEALTH_PER_EAT = 15.0
@@ -108,6 +123,19 @@ script = ExtResource("12_r6p65")
 [connection signal="max_boost" from="Player" to="Hud2" method="_set_max_boost_value"]
 [connection signal="max_health" from="Player" to="Hud2" method="_set_max_health_value"]
 [connection signal="scare" from="Player" to="ShipManager" method="on_predator_scares"]
+[connection signal="boost_value" from="Player2" to="Hud2" method="_set_boost_value"]
+[connection signal="died" from="Player2" to="." method="on_died"]
+[connection signal="died" from="Player2" to="Hud2" method="hide_hud"]
+[connection signal="died" from="Player2" to="ShipManager" method="player_died"]
+[connection signal="died" from="Player2" to="game_over" method="Show"]
+[connection signal="died" from="Player2" to="Music" method="play_died"]
+[connection signal="done_eating" from="Player2" to="camera" method="zoom_out"]
+[connection signal="eating" from="Player2" to="camera" method="zoom_in"]
+[connection signal="eating" from="Player2" to="AudioStreamPlayer" method="on_eating"]
+[connection signal="health_value" from="Player2" to="Hud2" method="_set_health_value"]
+[connection signal="max_boost" from="Player2" to="Hud2" method="_set_max_boost_value"]
+[connection signal="max_health" from="Player2" to="Hud2" method="_set_max_health_value"]
+[connection signal="scare" from="Player2" to="ShipManager" method="on_predator_scares"]
 [connection signal="options_button" from="main_menu" to="Options" method="Show"]
 [connection signal="quit_button" from="main_menu" to="." method="quit"]
 [connection signal="start_button" from="main_menu" to="start_game" method="start"]

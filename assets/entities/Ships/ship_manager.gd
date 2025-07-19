@@ -32,7 +32,7 @@ func _ready():
 func _start_game():
 	randomize()
 	ships_eaten = 0
-	set_process(true)
+	set_physics_process(true)
 	_predatorRef = get_node(predator)
 	for i in range(numberOfBoids):
 		spawn()
@@ -89,7 +89,7 @@ func remove_instance(boid):
 	_boids.erase(boid)
 	spawn()
 
-func _process(delta):
+func _physics_process(delta):
 	_detectNeighbors()
 	_target()
 	#_cohesion()
@@ -213,8 +213,8 @@ func _escapePredator(delta):
 
 func pause() :
 	for boid in _boids:
-		boid.set_process(false)
-	set_process(false)
+		boid.set_physics_process(false)
+	set_physics_process(false)
 
 
 func _on_start_game_countdown_started() -> void:
