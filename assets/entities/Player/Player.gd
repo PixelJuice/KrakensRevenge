@@ -45,7 +45,7 @@ func _ready() -> void:
 	pause()
 
 func start() -> void:
-	set_process(true)
+	set_physics_process(true)
 	animationPlayer.play("appear")
 	print("Player started")
 	currentVelocity = Vector2.ZERO
@@ -57,7 +57,7 @@ func start() -> void:
 	boost_value.emit(boost)
 	health_value.emit(health)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_eat()
 	_boost(delta)
 	input_direction = Vector2(
@@ -121,7 +121,7 @@ func update_tail(_delta: float) -> void:
 
 func on_died() :
 	animationPlayer.play("hiding")
-	set_process(false)
+	set_physics_process(false)
 
 
 
@@ -165,23 +165,24 @@ func _eat() :
 			health = clampf(health, 0, MAX_HEALTH)
 			health_value.emit(health)
 			currentVelocity = Vector2.ZERO
-			set_process(false)
+			speed = 0.0
+			set_physics_process(false)
 			body.GetEaten.emit()
 			eating.emit()
 
 
 func pause() -> void:
-	set_process(false)
+	set_physics_process(false)
 
 func unpause() -> void:
 	animationPlayer.play("swim")
-	set_process(true)
+	set_physics_process(true)
 
 
 func _on_animation_finished(anim_name: String):
 	if anim_name == "eat_01":
 		animationPlayer.play("appear")
 		done_eating.emit()
-		set_process(true)
+		set_physics_process(true)
 	elif anim_name == "appear":
 		animationPlayer.play("swim")
