@@ -40,10 +40,10 @@ text = "BACK"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 391.0
-offset_top = 339.0
-offset_right = 1483.0
-offset_bottom = 720.0
+offset_left = 392.0
+offset_top = 354.0
+offset_right = 1484.0
+offset_bottom = 708.0
 texture = ExtResource("4_72wpo")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
